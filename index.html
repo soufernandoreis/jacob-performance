@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#000000">
 <title>Jacob Performance | Transformando vidas através do exercício físico</title>
-<meta name="description" content="Treino com acompanhamento de perto, do primeiro dia ao seu melhor resultado. Agende sua aula experimental na Jacob Performance.">
+<meta name="description" content="Treino com um coach do seu lado, no Jardim Ipiranga, em Aparecida de Goiânia. Agende sua aula experimental na Jacob Performance.">
 <meta property="og:title" content="Jacob Performance">
 <meta property="og:description" content="Transformando vidas através do exercício físico. Agende sua aula experimental.">
 <meta property="og:type" content="website">
@@ -48,7 +48,7 @@ a{color:#F7B52C}a:hover{color:#FFFFFF}
   .jp-btns a{flex-grow:1;justify-content:center}
   .jp-divider{padding:0 18px !important}
   .jp-sec{padding-left:18px !important;padding-right:18px !important}
-  .jp-about{grid-template-columns:minmax(0,1fr) !important;gap:28px !important}
+  .jp-about{grid-template-columns:minmax(0,1fr) !important;gap:56px !important}
   .jp-grid3{grid-template-columns:minmax(0,1fr) !important;gap:14px !important}
   .jp-card{padding:26px 22px !important}
   .jp-cta{padding:0 22px 40px !important}
@@ -77,6 +77,90 @@ a{color:#F7B52C}a:hover{color:#FFFFFF}
   .jp-band-copy{text-align:center !important;align-items:center !important}
   .jp-band-copy h2,.jp-band-copy p{margin-left:auto !important;margin-right:auto !important;text-wrap:balance}
 }
+
+/* galeria em colunas */
+.jp-gal{position:relative;max-width:1280px;margin:0 auto;padding:24px 40px 96px}
+.jp-gal-head{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;margin-bottom:28px}
+.jp-gal-head h2{text-wrap:balance;margin:0;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:900;font-size:clamp(40px,5vw,64px);line-height:.92;text-transform:uppercase}
+.jp-gal-head p{margin:0;font-size:15px;color:#9A9A9A}
+.jp-gal-row{display:flex;gap:10px;height:480px}
+.jp-opt{position:relative;flex:1 1 0;min-width:64px;overflow:hidden;border:0;padding:0;margin:0;cursor:pointer;border-radius:30px;background:#111 var(--img) center/cover no-repeat;color:#FFFFFF;text-align:left;font:inherit;transition:flex-grow .6s cubic-bezier(.05,.61,.41,.95),border-radius .6s ease,height .6s cubic-bezier(.05,.61,.41,.95);-webkit-tap-highlight-color:transparent}
+.jp-opt.is-on{flex-grow:7;border-radius:18px;cursor:default}
+.jp-opt-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.25) 45%,rgba(0,0,0,0) 70%);transition:opacity .5s ease}
+.jp-opt:not(.is-on) .jp-opt-shade{background:rgba(0,0,0,.35)}
+.jp-opt-label{position:absolute;left:12px;right:12px;bottom:14px;display:flex;align-items:center;gap:12px}
+.jp-opt-icon{flex:0 0 40px;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.55);border:1.5px solid rgba(255,255,255,.85);transition:background .4s ease,border-color .4s ease}
+.jp-opt.is-on .jp-opt-icon{background:#E52421;border-color:#E52421}
+.jp-opt-info{display:flex;flex-direction:column;gap:2px;min-width:0;white-space:nowrap;opacity:0;transform:translateX(20px);transition:opacity .4s ease,transform .5s cubic-bezier(.05,.61,.41,.95)}
+.jp-opt.is-on .jp-opt-info{opacity:1;transform:none;transition-delay:.25s}
+.jp-opt-main{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:800;font-size:24px;line-height:1;text-transform:uppercase}
+.jp-opt-sub{font-size:14px;color:#D6D6D6}
+.jp-opt:focus-visible{outline:3px solid #F7B52C;outline-offset:3px}
+@media (max-width: 700px){
+  .jp-gal{padding:8px 18px 72px}
+  .jp-gal-row{flex-direction:column;height:auto;gap:8px}
+  .jp-opt{flex:none;height:64px;min-width:0;border-radius:18px;background-position:center 30%}
+  .jp-opt.is-on{height:360px;border-radius:18px}
+  .jp-opt-label{left:12px;bottom:12px}
+  .jp-opt:not(.is-on) .jp-opt-info{opacity:.95;transform:none;transition-delay:0s}
+  .jp-opt:not(.is-on) .jp-opt-sub{display:none}
+  .jp-opt:not(.is-on) .jp-opt-main{font-size:20px}
+}
+@media (prefers-reduced-motion: reduce){.jp-opt,.jp-opt-info,.jp-opt-shade{transition:none !important}}
+
+/* bloco "é pra mim" + como funciona */
+.jp-fit{position:relative;max-width:1280px;margin:0 auto;padding:0 40px 120px}
+.jp-fit-wrap{max-width:760px;margin:0 auto}
+.jp-fit-copy{text-align:center;align-items:center}
+.jp-fit-copy p:last-child{margin-left:auto !important;margin-right:auto !important}
+.jp-fit-copy{display:flex;flex-direction:column;gap:14px}
+.jp-eyebrow{margin:0;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:800;font-size:16px;letter-spacing:.12em;text-transform:uppercase;color:#F36A1F}
+.jp-fit-copy h2{margin:0;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:900;font-size:clamp(40px,5vw,68px);line-height:.92;text-transform:uppercase;text-wrap:balance}
+.jp-fit-copy p:last-child{margin:0;font-size:18px;line-height:1.6;color:#C9C9C9;max-width:520px}
+.jp-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.jp-steps li{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;border-radius:14px;background:#111111;border:1px solid rgba(255,255,255,.12);box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.jp-step-n{flex:0 0 40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#E52421;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:900;font-size:22px}
+.jp-steps h3{margin:0 0 4px;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:800;font-size:22px;line-height:1.05;text-transform:uppercase}
+.jp-steps p{margin:0;font-size:15px;line-height:1.5;color:#BDBDBD}
+.jp-addr{display:flex;flex-direction:column;gap:2px;text-align:left}
+.jp-addr-main{font-weight:600}
+.jp-addr-sub{font-size:14px;font-weight:400;color:#BDBDBD}
+@media (max-width: 900px){
+  .jp-fit{padding:0 18px 88px}
+  .jp-fit-wrap{grid-template-columns:minmax(0,1fr);gap:28px}
+  .jp-fit-copy{text-align:center;align-items:center}
+  .jp-fit-copy p:last-child{font-size:17px}
+}
+
+/* grade de horários */
+.jp-sgrid{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.jp-s{position:relative;padding:11px 6px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4px;transition:background .3s ease,border-color .3s ease,box-shadow .3s ease}
+.jp-s-time{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:800;font-size:28px;line-height:1;color:#F2F2F2;font-variant-numeric:tabular-nums}
+.jp-s-tag{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#BDBDBD}
+.jp-s-fam{width:100%;flex-direction:row;flex-wrap:wrap;gap:6px 12px;padding:12px;background:rgba(245,217,10,.14);border:1.5px solid rgba(245,217,10,.9)}
+.jp-s-fam .jp-s-tag{flex-basis:100%;color:#F5D90A}
+.jp-s-badge{padding:3px 9px;border-radius:999px;background:#F5D90A;color:#000;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.jp-s-sat{width:100%;flex-direction:row;gap:14px;padding:12px;background:rgba(229,36,33,.2);border:1.5px solid rgba(229,36,33,.85)}
+.jp-s-day{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#FFB3AD}
+.jp-s-big{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:900;font-size:26px;line-height:1;text-transform:uppercase}
+.jp-s-sat .jp-s-time{font-size:26px}
+.jp-s.is-next{border-color:#34D17A;box-shadow:0 0 0 2px rgba(52,209,122,.55),0 0 22px rgba(52,209,122,.35);background:rgba(31,168,85,.22)}
+.jp-s.is-next::after{content:"Próxima";position:absolute;top:-9px;left:50%;transform:translateX(-50%);padding:1px 8px;border-radius:999px;background:#1FA855;color:#fff;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.jp-next{display:flex;align-items:center;justify-content:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(0,0,0,.55);border:1px solid rgba(52,209,122,.6);font-size:14px;color:#FFFFFF;text-align:center}
+.jp-next-dot{flex:0 0 8px;width:8px;height:8px;border-radius:50%;background:#34D17A;box-shadow:0 0 0 0 rgba(52,209,122,.7);animation:jpPulse 1.8s infinite}
+.jp-next-txt b{font-weight:700}
+@keyframes jpPulse{0%{box-shadow:0 0 0 0 rgba(52,209,122,.7)}70%{box-shadow:0 0 0 8px rgba(52,209,122,0)}100%{box-shadow:0 0 0 0 rgba(52,209,122,0)}}
+@media (prefers-reduced-motion: reduce){.jp-next-dot{animation:none}}
+
+/* respiro na grade de horários */
+.jp-vidsched{aspect-ratio:auto !important;padding:64px 22px !important}
+.jp-vidsched > div:last-child{gap:22px !important}
+.jp-vidsched h2{margin-bottom:2px !important}
+.jp-sgrid{gap:14px 12px}
+.jp-s{padding:16px 6px}
+.jp-s-fam,.jp-s-sat{padding:16px 14px}
+.jp-s-fam{margin-top:6px}
+.jp-next{padding:10px 16px}
 </style>
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -101,7 +185,7 @@ a{color:#F7B52C}a:hover{color:#FFFFFF}
 <a href="#horarios" style="color: #FFFFFF; text-decoration: none">Horários</a>
 <a href="#contato" style="color: #FFFFFF; text-decoration: none">Contato</a>
 </nav>
-<a class="jp-head-cta" href="https://wa.me/5562992125217?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20aula%20experimental." target="_blank" rel="noopener" style="display: inline-flex; align-items: center; min-height: 46px; padding: 0 22px; border-radius: 6px; background: #E52421; color: #FFFFFF; text-decoration: none; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: 0.04em; text-transform: uppercase">Agendar aula</a>
+<a class="jp-head-cta" href="https://wa.me/5562992125217?text=Ol%C3%A1%21%20Vim%20pelo%20site%20%28topo%29%20e%20quero%20agendar%20uma%20aula%20experimental." target="_blank" rel="noopener" style="display: inline-flex; align-items: center; min-height: 46px; padding: 0 22px; border-radius: 6px; background: #E52421; color: #FFFFFF; text-decoration: none; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: 0.04em; text-transform: uppercase">Agendar aula</a>
 </header>
 
 <section id="topo" data-jpref="hero" class="jp-hero" style="min-height: 720px; max-width: 1360px; margin: 0 auto; display: flex; align-items: center">
@@ -109,9 +193,9 @@ a{color:#F7B52C}a:hover{color:#FFFFFF}
 <div class="jp-hero-copy" style="max-width: 560px; padding: 0 40px; display: flex; flex-direction: column; gap: 24px">
 <h1 class="jp-sr">Jacob Performance</h1>
 <p class="jp-in jp-tag" style="margin: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: clamp(26px, 2.6vw, 36px); line-height: 1.05; letter-spacing: 0.02em; text-transform: uppercase">Transformando vidas através do exercício físico</p>
-<p class="jp-in d2" style="margin: 0; max-width: 440px; font-size: 18px; line-height: 1.55; color: #C9C9C9">Treino com acompanhamento de perto, do primeiro dia ao seu melhor resultado.</p>
+<p class="jp-in d2" style="margin: 0; max-width: 440px; font-size: 18px; line-height: 1.55; color: #C9C9C9">Treino com um coach do seu lado, do primeiro dia ao seu melhor resultado. No Jardim Ipiranga, em Aparecida de Goiânia.</p>
 <div class="jp-in d3 jp-btns" style="display: flex; gap: 12px; flex-wrap: wrap">
-<a href="https://wa.me/5562992125217?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20aula%20experimental." target="_blank" rel="noopener" style="display: inline-flex; align-items: center; min-height: 54px; padding: 0 28px; border-radius: 6px; background: #E52421; color: #FFFFFF; text-decoration: none; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: 0.04em; text-transform: uppercase">Agendar aula</a>
+<a href="https://wa.me/5562992125217?text=Ol%C3%A1%21%20Vim%20pelo%20site%20%28inicio%29%20e%20quero%20agendar%20uma%20aula%20experimental." target="_blank" rel="noopener" style="display: inline-flex; align-items: center; min-height: 54px; padding: 0 28px; border-radius: 6px; background: #E52421; color: #FFFFFF; text-decoration: none; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 20px; letter-spacing: 0.04em; text-transform: uppercase">Agendar aula</a>
 </div>
 </div>
 </section>
@@ -129,57 +213,36 @@ a{color:#F7B52C}a:hover{color:#FFFFFF}
 <h2 style="margin: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 900; font-size: 38px; line-height: 0.95; text-transform: uppercase; text-shadow: 0 2px 18px rgba(0,0,0,0.6)">Grade de horários</h2>
 <p style="margin: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; color: #E0E0E0">Segunda a sexta</p>
 </div>
-<div style="width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
-<div class="jp-slot" style="padding: 12px 6px; border-radius: 12px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 4px">
-<span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 30px; line-height: 1; color: #F2F2F2">05:00</span>
-<span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #BDBDBD">Adultos</span>
+<div class="jp-next" id="jp-next" aria-live="polite"><span class="jp-next-dot" aria-hidden="true"></span><span class="jp-next-txt">Próxima aula</span></div>
+<div class="jp-sgrid">
+<div class="jp-s" data-day="wk" data-t="05:00"><span class="jp-s-time">05:00</span><span class="jp-s-tag">Adultos</span></div>
+<div class="jp-s" data-day="wk" data-t="06:00"><span class="jp-s-time">06:00</span><span class="jp-s-tag">Adultos</span></div>
+<div class="jp-s" data-day="wk" data-t="07:00"><span class="jp-s-time">07:00</span><span class="jp-s-tag">Adultos</span></div>
+<div class="jp-s" data-day="wk" data-t="08:00"><span class="jp-s-time">08:00</span><span class="jp-s-tag">Adultos</span></div>
+<div class="jp-s" data-day="wk" data-t="12:00"><span class="jp-s-time">12:00</span><span class="jp-s-tag">Adultos</span></div>
+<div class="jp-s" data-day="wk" data-t="15:00"><span class="jp-s-time">15:00</span><span class="jp-s-tag">Adultos</span></div>
+<div class="jp-s" data-day="wk" data-t="18:30"><span class="jp-s-time">18:30</span><span class="jp-s-tag">Adultos</span></div>
+<div class="jp-s" data-day="wk" data-t="19:30"><span class="jp-s-time">19:30</span><span class="jp-s-tag">Adultos</span></div>
+<div class="jp-s" data-day="wk" data-t="20:30"><span class="jp-s-time">20:30</span><span class="jp-s-tag">Adultos</span></div>
 </div>
-<div class="jp-slot" style="padding: 12px 6px; border-radius: 12px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 4px">
-<span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 30px; line-height: 1; color: #F2F2F2">06:00</span>
-<span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #BDBDBD">Adultos</span>
-</div>
-<div class="jp-slot" style="padding: 12px 6px; border-radius: 12px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 4px">
-<span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 30px; line-height: 1; color: #F2F2F2">07:00</span>
-<span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #BDBDBD">Adultos</span>
-</div>
-<div class="jp-slot" style="padding: 12px 6px; border-radius: 12px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 4px">
-<span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 30px; line-height: 1; color: #F2F2F2">08:00</span>
-<span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #BDBDBD">Adultos</span>
-</div>
-<div class="jp-slot" style="padding: 12px 6px; border-radius: 12px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 4px">
-<span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 30px; line-height: 1; color: #F2F2F2">15:00</span>
-<span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #BDBDBD">Adultos</span>
-</div>
-<div class="jp-slot" style="padding: 10px 6px; border-radius: 12px; background: rgba(245,217,10,0.14); border: 1.5px solid rgba(245,217,10,0.9); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 3px">
-<span style="padding: 2px 7px; border-radius: 999px; background: #F5D90A; color: #000000; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase">Mista</span>
-<span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 30px; line-height: 1; color: #FFFFFF">17:30</span>
-<span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 11px; line-height: 1.15; letter-spacing: 0.06em; text-transform: uppercase; color: #F5D90A">Adultos e crianças</span>
-</div>
-<div class="jp-slot" style="padding: 12px 6px; border-radius: 12px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 4px">
-<span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 30px; line-height: 1; color: #F2F2F2">18:30</span>
-<span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #BDBDBD">Adultos</span>
-</div>
-<div class="jp-slot" style="padding: 12px 6px; border-radius: 12px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 4px">
-<span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 30px; line-height: 1; color: #F2F2F2">19:30</span>
-<span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #BDBDBD">Adultos</span>
-</div>
-<div class="jp-slot" style="padding: 12px 6px; border-radius: 12px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 4px">
-<span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 30px; line-height: 1; color: #F2F2F2">20:30</span>
-<span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #BDBDBD">Adultos</span>
-</div>
-</div>
-<div class="jp-slot" style="width: 100%; padding: 12px; border-radius: 12px; background: rgba(229,36,33,0.2); border: 1.5px solid rgba(229,36,33,0.85); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; gap: 14px; text-align: center">
-<span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #FFB3AD">Sábado</span>
-<span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 900; font-size: 26px; line-height: 1; text-transform: uppercase">Aulão</span>
-<span style="font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 26px; line-height: 1">08:00</span>
-</div>
-<p style="margin: 0; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; line-height: 1.4; color: #E0E0E0; text-align: center; text-shadow: 0 1px 8px rgba(0,0,0,0.8)"><span aria-hidden="true" style="flex-shrink: 0; width: 12px; height: 12px; border-radius: 3px; border: 1.5px solid #F5D90A; background: rgba(245,217,10,0.25)"></span>17:30: aula mista, adultos e crianças juntos.</p>
+<div class="jp-s jp-s-fam" data-day="wk" data-t="17:30" data-label="turma família"><span class="jp-s-badge">Pais e filhos</span><span class="jp-s-time">17:30</span><span class="jp-s-tag">Adultos e crianças treinam juntos</span></div>
+<div class="jp-s jp-s-sat" data-day="sat" data-t="08:00" data-label="aulão de sábado"><span class="jp-s-day">Sábado</span><span class="jp-s-big">Aulão</span><span class="jp-s-time">08:00</span></div>
 </div>
 </div>
 <div data-jpref="train" style="display: flex; flex-direction: column; gap: 22px; max-width: 540px">
 <h2 style="margin: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 900; font-size: clamp(42px, 5vw, 72px); line-height: 0.92; text-transform: uppercase">Daqui a um mês, você vai agradecer por ter <span style="color: #F36A1F">começado hoje</span></h2>
 <p style="margin: 0; font-size: 18px; line-height: 1.65; color: #C9C9C9">Cada treino é planejado para o seu momento, com técnica, progressão e acompanhamento para você evoluir com segurança.</p>
-<a class="jp-about-cta jp-wa" href="https://wa.me/5562992125217?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20aula%20experimental." target="_blank" rel="noopener" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 58px; padding: 0 32px; border-radius: 6px; background: #E52421; color: #FFFFFF; text-decoration: none; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 21px; letter-spacing: 0.04em; text-transform: uppercase"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1121 11.5z"></path></svg>Agendar aula experimental</a>
+<a class="jp-about-cta jp-wa" href="https://wa.me/5562992125217?text=Ol%C3%A1%21%20Vim%20pelo%20site%20%28meio%29%20e%20quero%20agendar%20uma%20aula%20experimental." target="_blank" rel="noopener" style="align-self: flex-start; display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 58px; padding: 0 32px; border-radius: 6px; background: #E52421; color: #FFFFFF; text-decoration: none; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 21px; letter-spacing: 0.04em; text-transform: uppercase"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 01-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1121 11.5z"></path></svg>Agendar aula experimental</a>
+</div>
+</div>
+</section>
+
+<section class="jp-fit" aria-labelledby="jp-fit-title">
+<div class="jp-fit-wrap">
+<div class="jp-fit-copy">
+<p class="jp-eyebrow">Nunca treinou?</p>
+<h2 id="jp-fit-title">Aqui você começa do seu jeito</h2>
+<p>Cada aula é adaptada ao seu nível. Você começa com o peso e o ritmo que o seu corpo aguenta, e o coach ajusta junto com você, sem pressa e sem comparação.</p>
 </div>
 </div>
 </section>
@@ -193,14 +256,43 @@ a{color:#F7B52C}a:hover{color:#FFFFFF}
 </div>
 </section>
 
+<section id="rotina" class="jp-gal" aria-labelledby="jp-gal-title">
+<div class="jp-gal-head">
+<h2 id="jp-gal-title">Por dentro do box</h2>
+<p>Toque em uma foto para abrir.</p>
+</div>
+<div class="jp-gal-row">
+<button type="button" class="jp-opt is-on" aria-expanded="true" style="--img: url('assets/galeria-1.jpg')">
+<span class="jp-opt-shade" aria-hidden="true"></span>
+<span class="jp-opt-label"><span class="jp-opt-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></span><span class="jp-opt-info"><span class="jp-opt-main">Coaches de perto</span><span class="jp-opt-sub">Correção em cada repetição</span></span></span>
+</button>
+<button type="button" class="jp-opt" aria-expanded="false" style="--img: url('assets/galeria-2.jpg')">
+<span class="jp-opt-shade" aria-hidden="true"></span>
+<span class="jp-opt-label"><span class="jp-opt-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6v6a4 4 0 0 0 8 0V6"/></svg></span><span class="jp-opt-info"><span class="jp-opt-main">Ginástica</span><span class="jp-opt-sub">Barra, argolas e técnica</span></span></span>
+</button>
+<button type="button" class="jp-opt" aria-expanded="false" style="--img: url('assets/galeria-3.jpg')">
+<span class="jp-opt-shade" aria-hidden="true"></span>
+<span class="jp-opt-label"><span class="jp-opt-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span><span class="jp-opt-info"><span class="jp-opt-main">Condicionamento</span><span class="jp-opt-sub">Fôlego que aparece no dia a dia</span></span></span>
+</button>
+<button type="button" class="jp-opt" aria-expanded="false" style="--img: url('assets/galeria-4.jpg')">
+<span class="jp-opt-shade" aria-hidden="true"></span>
+<span class="jp-opt-label"><span class="jp-opt-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22V3"/><path d="M5 4h12l-2 4 2 4H5"/></svg></span><span class="jp-opt-info"><span class="jp-opt-main">Nossa casa</span><span class="jp-opt-sub">Um box feito para você evoluir</span></span></span>
+</button>
+<button type="button" class="jp-opt" aria-expanded="false" style="--img: url('assets/galeria-5.jpg')">
+<span class="jp-opt-shade" aria-hidden="true"></span>
+<span class="jp-opt-label"><span class="jp-opt-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20l1.3-5A8.5 8.5 0 1 1 21 11.5z"/></svg></span><span class="jp-opt-info"><span class="jp-opt-main">Primeiro dia</span><span class="jp-opt-sub">A gente te recebe e te orienta</span></span></span>
+</button>
+</div>
+</section>
+
 <section id="contato" data-jpref="cta" class="jp-cta" style="max-width: 1360px; margin: 0 auto; padding: 40px 40px 64px">
 <div class="jp-cta-space"></div>
 <div style="max-width: 640px; min-height: 520px; display: flex; flex-direction: column; justify-content: center; gap: 22px; padding-left: 0">
 <h2 style="margin: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 900; font-size: clamp(46px, 6vw, 92px); line-height: 0.9; text-transform: uppercase"><span class="jp-l">Todo </span><span class="jp-l">renascimento </span><span class="jp-l">começa com </span><span class="jp-l">uma decisão</span></h2>
 <p style="margin: 0; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 26px; line-height: 1.15; letter-spacing: 0.02em; text-transform: uppercase; color: #F36A1F">A sua pode ser hoje: agende sua primeira aula.</p>
-<a href="https://www.google.com/maps/place/Jacob+perfomance+2/@-16.8231295,-49.2790331,17z/data=!3m1!4b1!4m6!3m5!1s0x935efb14235cbfab:0xd423fae09d253c36!8m2!3d-16.8231295!4d-49.2790331!16s%2Fg%2F11y3xnx5r7?entry=ttu&amp;g_ep=EgoyMDI2MDkyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-size: 18px; font-weight: 600; color: #FFFFFF; text-decoration: underline; text-underline-offset: 4px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E52421" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 10-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.6"></circle></svg>Como chegar: ver no Google Maps</a>
+<a href="https://www.google.com/maps/place/Jacob+perfomance+2/@-16.8231295,-49.2790331,17z/data=!3m1!4b1!4m6!3m5!1s0x935efb14235cbfab:0xd423fae09d253c36!8m2!3d-16.8231295!4d-49.2790331!16s%2Fg%2F11y3xnx5r7?entry=ttu&amp;g_ep=EgoyMDI2MDkyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-size: 18px; font-weight: 600; color: #FFFFFF; text-decoration: underline; text-underline-offset: 4px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E52421" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 10-14 0c0 5.8 7 12 7 12z"></path><circle cx="12" cy="10" r="2.6"></circle></svg><span class="jp-addr"><span class="jp-addr-main">R. Dom Barbosa, Jardim Ipiranga</span><span class="jp-addr-sub">Aparecida de Goiânia · abrir no Google Maps</span></span></a>
 <div class="jp-cta-btns" style="display: flex; gap: 12px; flex-wrap: wrap">
-<a class="jp-wa" href="https://wa.me/5562992125217?text=Ol%C3%A1%21%20Vim%20pelo%20site%20e%20quero%20agendar%20uma%20aula%20experimental." target="_blank" rel="noopener" style="display: inline-flex; align-items: center; justify-content: center; min-height: 58px; padding: 0 32px; border-radius: 6px; background: #E52421; color: #FFFFFF; text-decoration: none; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 21px; letter-spacing: 0.04em; text-transform: uppercase">Chamar no WhatsApp</a>
+<a class="jp-wa" href="https://wa.me/5562992125217?text=Ol%C3%A1%21%20Vim%20pelo%20site%20%28final%29%20e%20quero%20agendar%20uma%20aula%20experimental." target="_blank" rel="noopener" style="display: inline-flex; align-items: center; justify-content: center; min-height: 58px; padding: 0 32px; border-radius: 6px; background: #E52421; color: #FFFFFF; text-decoration: none; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 21px; letter-spacing: 0.04em; text-transform: uppercase">Chamar no WhatsApp</a>
 </div>
 </div>
 <footer class="jp-footer" style="margin-top: 56px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; font-size: 14px; color: #9A9A9A">
@@ -885,6 +977,57 @@ class Component extends DCLogic {
   root.addEventListener('mousemove', v.onMove); root.addEventListener('mouseleave', v.onLeave);
   root.addEventListener('touchstart', v.onTouch, { passive: true }); root.addEventListener('touchmove', v.onTouch, { passive: true }); root.addEventListener('touchend', v.onLeave);
   c.__apply(); c.componentDidMount();
+})();
+
+(function(){
+  var opts = document.querySelectorAll('.jp-opt');
+  opts.forEach(function(o){
+    o.addEventListener('click', function(){
+      if (o.classList.contains('is-on')) return;
+      opts.forEach(function(x){ x.classList.remove('is-on'); x.setAttribute('aria-expanded','false'); });
+      o.classList.add('is-on'); o.setAttribute('aria-expanded','true');
+    });
+  });
+})();
+
+(function(){
+  var box = document.getElementById('jp-next'); if (!box) return;
+  var txt = box.querySelector('.jp-next-txt');
+  var els = Array.prototype.slice.call(document.querySelectorAll('.jp-s[data-t]'));
+  var DAYS = ['domingo','segunda','terça','quarta','quinta','sexta','sábado'];
+  function nowSP(){
+    var f = new Intl.DateTimeFormat('en-US',{timeZone:'America/Sao_Paulo',weekday:'short',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
+    var p = {}; f.formatToParts(new Date()).forEach(function(x){ p[x.type] = x.value; });
+    var wd = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(p.weekday);
+    return { wd: wd, min: parseInt(p.hour,10) * 60 + parseInt(p.minute,10) };
+  }
+  function update(){
+    var n = nowSP(), best = null;
+    for (var d = 0; d < 8 && !best; d++) {
+      var wd = (n.wd + d) % 7, cands = [];
+      els.forEach(function(el){
+        var ok = el.dataset.day === 'wk' ? (wd >= 1 && wd <= 5) : (wd === 6);
+        if (!ok) return;
+        var hm = el.dataset.t.split(':'), m = (+hm[0]) * 60 + (+hm[1]);
+        if (d === 0 && m <= n.min) return;
+        cands.push({ el: el, m: m, d: d, wd: wd });
+      });
+      cands.sort(function(a,b){ return a.m - b.m; });
+      if (cands.length) best = cands[0];
+    }
+    els.forEach(function(el){ el.classList.remove('is-next'); });
+    if (!best) return;
+    best.el.classList.add('is-next');
+    var when = best.d === 0 ? 'hoje' : (best.d === 1 ? 'amanhã' : DAYS[best.wd]);
+    var label = best.el.dataset.label ? ' (' + best.el.dataset.label + ')' : '';
+    var extra = '';
+    if (best.d === 0) {
+      var diff = best.m - n.min, h = Math.floor(diff / 60), mm = diff % 60;
+      extra = ' · começa em ' + (h ? h + 'h' + (mm ? ' ' + mm + 'min' : '') : mm + ' min');
+    }
+    txt.innerHTML = 'Próxima aula: <b>' + when + ' às ' + best.el.dataset.t + '</b>' + label + extra;
+  }
+  update(); setInterval(update, 30000);
 })();
 </script>
 </body>
