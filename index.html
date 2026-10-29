@@ -161,6 +161,13 @@ a{color:#F7B52C}a:hover{color:#FFFFFF}
 .jp-s-fam,.jp-s-sat{padding:16px 14px}
 .jp-s-fam{margin-top:6px}
 .jp-next{padding:10px 16px}
+
+/* grade: vídeo de fora a fora no celular */
+@media (max-width: 900px){
+  .jp-vidsched{width:auto !important;max-width:none !important;margin-left:-18px !important;margin-right:-18px !important;justify-self:stretch !important;padding:72px 22px !important}
+  .jp-vidsched > div[aria-hidden="true"]{-webkit-mask-image:none !important;mask-image:none !important}
+  .jp-vidsched > div[aria-hidden="true"] > div{background:linear-gradient(to bottom,#000000 0%,rgba(0,0,0,.45) 14%,rgba(0,0,0,.45) 86%,#000000 100%) !important}
+}
 </style>
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -253,35 +260,6 @@ a{color:#F7B52C}a:hover{color:#FFFFFF}
 <div class="jp-band-copy" style="position: absolute; left: 0; right: 0; bottom: 64px; max-width: 1280px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; gap: 12px">
 <h2 style="margin: 0; max-width: 680px; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 900; font-size: clamp(48px, 7vw, 104px); line-height: 0.9; text-transform: uppercase; text-shadow: 0 2px 24px rgba(0,0,0,0.6)">Aqui ninguém treina sozinho</h2>
 <p style="margin: 0; max-width: 420px; font-size: 18px; line-height: 1.5; color: #E6E6E6; text-shadow: 0 1px 12px rgba(0,0,0,0.7)">Uma equipe de coaches acompanha cada aluno, do aquecimento ao último movimento.</p>
-</div>
-</section>
-
-<section id="rotina" class="jp-gal" aria-labelledby="jp-gal-title">
-<div class="jp-gal-head">
-<h2 id="jp-gal-title">Por dentro do box</h2>
-<p>Toque em uma foto para abrir.</p>
-</div>
-<div class="jp-gal-row">
-<button type="button" class="jp-opt is-on" aria-expanded="true" style="--img: url('assets/galeria-1.jpg')">
-<span class="jp-opt-shade" aria-hidden="true"></span>
-<span class="jp-opt-label"><span class="jp-opt-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></span><span class="jp-opt-info"><span class="jp-opt-main">Coaches de perto</span><span class="jp-opt-sub">Correção em cada repetição</span></span></span>
-</button>
-<button type="button" class="jp-opt" aria-expanded="false" style="--img: url('assets/galeria-2.jpg')">
-<span class="jp-opt-shade" aria-hidden="true"></span>
-<span class="jp-opt-label"><span class="jp-opt-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6v6a4 4 0 0 0 8 0V6"/></svg></span><span class="jp-opt-info"><span class="jp-opt-main">Ginástica</span><span class="jp-opt-sub">Barra, argolas e técnica</span></span></span>
-</button>
-<button type="button" class="jp-opt" aria-expanded="false" style="--img: url('assets/galeria-3.jpg')">
-<span class="jp-opt-shade" aria-hidden="true"></span>
-<span class="jp-opt-label"><span class="jp-opt-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span><span class="jp-opt-info"><span class="jp-opt-main">Condicionamento</span><span class="jp-opt-sub">Fôlego que aparece no dia a dia</span></span></span>
-</button>
-<button type="button" class="jp-opt" aria-expanded="false" style="--img: url('assets/galeria-4.jpg')">
-<span class="jp-opt-shade" aria-hidden="true"></span>
-<span class="jp-opt-label"><span class="jp-opt-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22V3"/><path d="M5 4h12l-2 4 2 4H5"/></svg></span><span class="jp-opt-info"><span class="jp-opt-main">Nossa casa</span><span class="jp-opt-sub">Um box feito para você evoluir</span></span></span>
-</button>
-<button type="button" class="jp-opt" aria-expanded="false" style="--img: url('assets/galeria-5.jpg')">
-<span class="jp-opt-shade" aria-hidden="true"></span>
-<span class="jp-opt-label"><span class="jp-opt-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20l1.3-5A8.5 8.5 0 1 1 21 11.5z"/></svg></span><span class="jp-opt-info"><span class="jp-opt-main">Primeiro dia</span><span class="jp-opt-sub">A gente te recebe e te orienta</span></span></span>
-</button>
 </div>
 </section>
 
