@@ -23,6 +23,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800;900&amp;family=Barlow:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#000000}
+html{scroll-behavior:smooth}
 a{color:#F7B52C}a:hover{color:#FFFFFF}
 .jp *{box-sizing:border-box}
 .jp h1,.jp h2{overflow-wrap:break-word}
@@ -168,6 +169,34 @@ a{color:#F7B52C}a:hover{color:#FFFFFF}
   .jp-vidsched > div[aria-hidden="true"]{-webkit-mask-image:none !important;mask-image:none !important}
   .jp-vidsched > div[aria-hidden="true"] > div{background:linear-gradient(to bottom,#000000 0%,rgba(0,0,0,.45) 14%,rgba(0,0,0,.45) 86%,#000000 100%) !important}
 }
+
+/* faixa do evento e programação */
+.jp-evbar{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;gap:10px;max-width:max-content;margin:0 auto;padding:9px 16px;border-radius:999px;background:rgba(17,17,17,.9);border:1px solid rgba(243,106,31,.6);color:#FFFFFF;text-decoration:none;font-size:14px;line-height:1.3}
+.jp-evbar b{font-weight:700}
+.jp-evbar:hover{border-color:#F36A1F;color:#FFFFFF}
+.jp-evdot{flex:0 0 8px;width:8px;height:8px;border-radius:50%;background:#F36A1F;animation:jpEv 1.8s infinite}
+.jp-evgo{color:#F36A1F;font-weight:700}
+@keyframes jpEv{0%{box-shadow:0 0 0 0 rgba(243,106,31,.7)}70%{box-shadow:0 0 0 8px rgba(243,106,31,0)}100%{box-shadow:0 0 0 0 rgba(243,106,31,0)}}
+.jp-prog{position:relative;max-width:760px;margin:0 auto;padding:24px 40px 96px}
+.jp-prog-head{text-align:center;margin-bottom:22px}
+.jp-prog-head h2{margin:4px 0 0;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:900;font-size:clamp(40px,5vw,60px);line-height:.92;text-transform:uppercase}
+.jp-ev{display:flex;gap:16px;align-items:stretch;padding:18px;border-radius:18px;background:#111111;border:1px solid rgba(255,255,255,.14);color:#FFFFFF;text-decoration:none;box-shadow:0 14px 40px rgba(0,0,0,.5);transition:border-color .2s,transform .2s}
+.jp-ev:hover{border-color:#F36A1F;color:#FFFFFF;transform:translateY(-2px)}
+.jp-ev-date{flex:0 0 72px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-radius:12px;background:#E52421;font-family:'Barlow Condensed','Arial Narrow',sans-serif;text-transform:uppercase}
+.jp-ev-day{font-weight:900;font-size:40px;line-height:1}
+.jp-ev-mon{font-weight:800;font-size:16px;letter-spacing:.1em}
+.jp-ev-body{display:flex;flex-direction:column;gap:4px;min-width:0}
+.jp-ev-tag{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#34D17A}
+.jp-ev-title{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:900;font-size:30px;line-height:1;text-transform:uppercase}
+.jp-ev-txt{font-size:15px;line-height:1.45;color:#BDBDBD}
+.jp-ev-cta{margin-top:6px;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:800;font-size:18px;letter-spacing:.03em;text-transform:uppercase;color:#F36A1F}
+@media (max-width: 900px){
+  .jp-evbar{margin:0 16px;max-width:none}
+  .jp-prog{padding:8px 18px 72px}
+}
+@media (prefers-reduced-motion: reduce){.jp-evdot{animation:none}}
+.jp-ev-soon{font-size:26px !important}
+.jp-ev-tag{color:#F5D90A !important}
 </style>
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -194,6 +223,7 @@ a{color:#F7B52C}a:hover{color:#FFFFFF}
 </nav>
 <a class="jp-head-cta" href="https://wa.me/5562992125217?text=Ol%C3%A1%21%20Vim%20pelo%20site%20%28topo%29%20e%20quero%20agendar%20uma%20aula%20experimental." target="_blank" rel="noopener" style="display: inline-flex; align-items: center; min-height: 46px; padding: 0 22px; border-radius: 6px; background: #E52421; color: #FFFFFF; text-decoration: none; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: 0.04em; text-transform: uppercase">Agendar aula</a>
 </header>
+<a class="jp-evbar" href="#programacao"><span class="jp-evdot" aria-hidden="true"></span><span><b>Em breve:</b> Simulado HYROX · saiba mais</span><span class="jp-evgo" aria-hidden="true">↓</span></a>
 
 <section id="topo" data-jpref="hero" class="jp-hero" style="min-height: 720px; max-width: 1360px; margin: 0 auto; display: flex; align-items: center">
 <div class="jp-space"></div>
@@ -261,6 +291,22 @@ a{color:#F7B52C}a:hover{color:#FFFFFF}
 <h2 style="margin: 0; max-width: 680px; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 900; font-size: clamp(48px, 7vw, 104px); line-height: 0.9; text-transform: uppercase; text-shadow: 0 2px 24px rgba(0,0,0,0.6)">Aqui ninguém treina sozinho</h2>
 <p style="margin: 0; max-width: 420px; font-size: 18px; line-height: 1.5; color: #E6E6E6; text-shadow: 0 1px 12px rgba(0,0,0,0.7)">Uma equipe de coaches acompanha cada aluno, do aquecimento ao último movimento.</p>
 </div>
+</section>
+
+<section id="programacao" class="jp-prog" aria-labelledby="jp-prog-title">
+<div class="jp-prog-head">
+<p class="jp-eyebrow">Programação</p>
+<h2 id="jp-prog-title">Próximos eventos</h2>
+</div>
+<a class="jp-ev" href="/hyrox/">
+<div class="jp-ev-date"><span class="jp-ev-mon">Em</span><span class="jp-ev-day jp-ev-soon">breve</span></div>
+<div class="jp-ev-body">
+<span class="jp-ev-tag">Data a confirmar · gratuito</span>
+<span class="jp-ev-title">Simulado HYROX</span>
+<span class="jp-ev-txt">Em duplas, com 8 estações. Modalidades de 8 km e 4 km.</span>
+<span class="jp-ev-cta">Ver detalhes →</span>
+</div>
+</a>
 </section>
 
 <section id="contato" data-jpref="cta" class="jp-cta" style="max-width: 1360px; margin: 0 auto; padding: 40px 40px 64px">

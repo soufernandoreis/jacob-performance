@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>Simulado HYROX | Jacob Performance</title>
+<meta name="description" content="Inscrição gratuita para o Simulado HYROX da Jacob Performance. Escolha o horário da sua dupla.">
+<meta property="og:title" content="Simulado HYROX | Jacob Performance">
+<meta property="og:description" content="Inscrição gratuita. Escolha o horário da sua dupla.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://jacob-performance.vercel.app/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* Layout: uma coluna estreita, cabeçalho do evento, grade de horários por hora, formulário que abre embaixo */
+  :root{
+    --bg:#000000; --card:#111111; --line:rgba(255,255,255,.18); --fg:#FFFFFF; --muted:#A8A8A8;
+    --red:#E52421; --orange:#F36A1F; --green:#1FA855; --green-hi:#34D17A;
+    --display:'Barlow Condensed','Arial Narrow',sans-serif; --body:'Barlow','Helvetica Neue',sans-serif;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);-webkit-font-smoothing:antialiased}
+  a{color:var(--fg)}
+  .wrap{max-width:560px;margin:0 auto;padding:28px max(18px,env(safe-area-inset-right,0px)) 64px max(18px,env(safe-area-inset-left,0px))}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:28px}
+  .top a{font-size:14px;color:var(--muted);text-decoration:none}
+  .top a:hover{color:var(--fg)}
+  .brand{font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.1em;text-transform:uppercase}
+  .hero{position:relative;text-align:center;padding:8px 0 26px}
+  .hero::before{content:"";position:absolute;left:50%;top:10px;width:300px;height:220px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(243,106,31,.35),rgba(243,106,31,0));pointer-events:none}
+  .hero img{position:relative;width:150px;height:auto;display:block;margin:0 auto 10px}
+  .eyebrow{position:relative;margin:0 0 6px;font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--orange)}
+  h1{position:relative;margin:0;font-family:var(--display);font-weight:900;font-size:clamp(52px,15vw,84px);line-height:.88;text-transform:uppercase}
+  .meta{position:relative;margin:14px 0 0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+  .pill{padding:6px 12px;border-radius:999px;border:1px solid var(--line);font-size:14px;font-weight:500}
+  .pill.free{background:var(--green);border-color:var(--green);font-weight:600}
+  .how{margin:0 0 22px;text-align:center;color:var(--muted);font-size:16px;line-height:1.5;text-wrap:balance}
+  .count{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 auto 18px;padding:9px 14px;border-radius:999px;background:var(--card);border:1px solid rgba(52,209,122,.5);width:max-content;max-width:100%;font-size:15px}
+  .count b{font-variant-numeric:tabular-nums}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--green-hi);flex:0 0 8px}
+  .grid{display:flex;flex-direction:column;gap:12px}
+  .row{display:grid;grid-template-columns:44px repeat(6,minmax(0,1fr));gap:6px;align-items:center}
+  .hour{font-family:var(--display);font-weight:900;font-size:22px;color:var(--orange)}
+  .slot{appearance:none;font:inherit;min-height:46px;padding:0;border-radius:10px;border:1.5px solid rgba(255,255,255,.55);background:transparent;color:var(--fg);font-family:var(--display);font-weight:800;font-size:18px;font-variant-numeric:tabular-nums;cursor:pointer;transition:background .2s,border-color .2s,transform .1s}
+  .slot:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+  .slot:active{transform:scale(.96)}
+  .slot.sel{background:var(--green);border-color:var(--green-hi);box-shadow:0 0 0 3px rgba(52,209,122,.3)}
+  .slot.taken{border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.28);text-decoration:line-through;cursor:not-allowed;background:rgba(255,255,255,.03)}
+  .slot:focus-visible{outline:3px solid #F7B52C;outline-offset:2px}
+  .legend{display:flex;justify-content:center;flex-wrap:wrap;gap:16px;margin:16px 0 0;font-size:13px;color:var(--muted)}
+  .legend span{display:flex;align-items:center;gap:6px}
+  .sw{width:14px;height:14px;border-radius:4px;border:1.5px solid rgba(255,255,255,.55)}
+  .sw.s{background:var(--green);border-color:var(--green-hi)}
+  .sw.t{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.03)}
+  .form{margin-top:26px;padding:22px 18px;border-radius:16px;background:var(--card);border:1px solid var(--line)}
+  .form h2{margin:0 0 4px;font-family:var(--display);font-weight:900;font-size:30px;line-height:1;text-transform:uppercase}
+  .form .sub{margin:0 0 18px;color:var(--muted);font-size:15px}
+  .fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  label{display:flex;flex-direction:column;gap:6px;font-size:14px;color:#D6D6D6;min-width:0}
+  input{font:inherit;font-size:17px;color:var(--fg);background:#000;border:1.5px solid rgba(255,255,255,.3);border-radius:10px;padding:12px;width:100%;min-width:0}
+  input:focus{outline:none;border-color:var(--green-hi)}
+  .btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:56px;margin-top:16px;border:0;border-radius:10px;background:var(--green);color:#fff;font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;box-shadow:0 10px 28px rgba(31,168,85,.35);text-decoration:none}
+  .btn:disabled{opacity:.55;cursor:wait}
+  .btn.ghost{background:transparent;border:2px solid rgba(255,255,255,.8);box-shadow:none}
+  .msg{margin:12px 0 0;font-size:15px;line-height:1.45}
+  .msg.err{color:#FF8A80}
+  .done{margin-top:26px;padding:26px 18px;border-radius:16px;background:linear-gradient(160deg,rgba(31,168,85,.25),rgba(17,17,17,1) 60%);border:1.5px solid var(--green-hi);text-align:center}
+  .done h2{margin:0 0 8px;font-family:var(--display);font-weight:900;font-size:34px;text-transform:uppercase}
+  .done p{margin:0;font-size:17px;line-height:1.5}
+  .done .big{font-family:var(--display);font-weight:900;font-size:48px;line-height:1;margin:10px 0 6px;color:var(--green-hi)}
+  .note{margin:28px 0 0;text-align:center;font-size:13px;color:#6F6F6F}
+  .demo{margin:0 0 18px;padding:8px 12px;border-radius:8px;background:rgba(245,217,10,.12);border:1px solid rgba(245,217,10,.5);color:#F5D90A;font-size:13px;text-align:center}
+  @media (max-width:380px){.row{grid-template-columns:36px repeat(6,minmax(0,1fr));gap:4px}.slot{font-size:16px;min-height:42px}.hour{font-size:19px}}
+  @media (prefers-reduced-motion: reduce){*{transition:none!important}}
+  .sec{margin:0 0 8px;text-align:center;font-family:var(--display);font-weight:900;font-size:34px;line-height:1;text-transform:uppercase}
+  .info{margin:0 0 40px}
+  .lead{margin:0 0 18px;text-align:center;color:var(--muted);font-size:16px;line-height:1.5;text-wrap:balance}
+  .mods{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+  .mod{display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px 10px;border-radius:14px;background:var(--card);border:1px solid var(--line);text-align:center}
+  .mod-tag{padding:3px 10px;border-radius:999px;background:var(--red);font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+  .mod-tag.alt{background:var(--orange)}
+  .mod-km{font-family:var(--display);font-weight:900;font-size:44px;line-height:1}
+  .mod-txt{font-size:14px;color:var(--muted);line-height:1.35}
+  .stations{list-style:none;counter-reset:st;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .stations li{counter-increment:st;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:var(--card);border:1px solid var(--line);min-width:0}
+  .stations li::before{content:counter(st);flex:0 0 26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(243,106,31,.18);color:var(--orange);font-family:var(--display);font-weight:900;font-size:16px}
+  .stations b{font-weight:600;font-size:14px;line-height:1.2;flex:1;min-width:0}
+  .stations span{font-size:13px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+  .modpick{border:0;padding:0;margin:0 0 14px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .modpick legend{padding:0;margin-bottom:6px;font-size:14px;color:#D6D6D6}
+  .opt{position:relative;flex-direction:row;align-items:center;justify-content:center;gap:8px;padding:12px;border-radius:10px;border:1.5px solid rgba(255,255,255,.3);cursor:pointer;color:var(--fg);font-size:16px}
+  .opt input{position:absolute;opacity:0;pointer-events:none}
+  .opt:has(input:checked){border-color:var(--green-hi);background:rgba(31,168,85,.2)}
+  .opt:has(input:focus-visible){outline:3px solid #F7B52C;outline-offset:2px}
+  @media (max-width:360px){.stations{grid-template-columns:1fr}}
+  /* inscrição em painel fixo no topo: o teclado do celular nunca cobre */
+  .backdrop{position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.72);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+  .form{position:fixed;z-index:21;left:50%;transform:translateX(-50%);top:calc(env(safe-area-inset-top,0px) + 14px);width:min(560px,calc(100% - 24px));margin:0;max-height:calc(100dvh - 28px);overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,.6);animation:jpSheet .28s cubic-bezier(.2,.8,.2,1)}
+  @keyframes jpSheet{from{opacity:0;transform:translate(-50%,-14px)}to{opacity:1;transform:translate(-50%,0)}}
+  .form-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .x{appearance:none;flex:0 0 40px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--fg);font-size:26px;line-height:1;cursor:pointer}
+  .swap{appearance:none;display:block;width:100%;margin-top:10px;padding:10px;border:0;background:transparent;color:var(--muted);font:inherit;font-size:15px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+  body.lock{overflow:hidden}
+  @media (prefers-reduced-motion: reduce){.form{animation:none}}
+  /* horário completo em cada botão, agrupado por hora */
+  .grid{gap:6px}
+  .hour{margin:12px 0 2px;font-size:17px;letter-spacing:.06em;text-transform:uppercase}
+  .hour:first-child{margin-top:0}
+  .row{grid-template-columns:repeat(3,minmax(0,1fr)) !important;gap:8px !important}
+  .slot{min-height:52px !important;font-size:22px !important}
+  @media (max-width:380px){.slot{font-size:20px !important}}
+.soon-dot{background:#F5D90A !important}
+.soon{top:50% !important;transform:translate(-50%,-50%) !important;animation:none}
+.soon .sub{margin-bottom:6px}
+  /* horário ocupado em vermelho */
+  .slot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px}
+  .slot.taken{background:rgba(229,36,33,.16) !important;border-color:rgba(229,36,33,.85) !important;color:#FF8A80 !important;text-decoration:none !important;opacity:1}
+  .slot.taken .slot-t{text-decoration:line-through;text-decoration-thickness:2px;font-size:18px}
+  .slot-tag{font-family:var(--body);font-weight:600;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#FF8A80}
+  .sw.t{background:rgba(229,36,33,.16) !important;border-color:rgba(229,36,33,.85) !important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <span class="brand">Jacob Performance</span>
+    <a href="/">Ver o box →</a>
+  </div>
+
+  <header class="hero">
+    <img src="fenix.png" alt="" width="314" height="244">
+    <p class="eyebrow">Evento do box</p>
+    <h1>Simulado<br>HYROX</h1>
+    <div class="meta">
+      <span class="pill">Data a confirmar</span>
+      <span class="pill">Duplas</span>
+      <span class="pill free">Gratuito</span>
+    </div>
+  </header>
+
+  <section class="info" aria-labelledby="como">
+  <h2 id="como" class="sec">Como funciona</h2>
+  <p class="lead">Corrida intercalada com 8 estações. A dupla corre junta e divide o trabalho de cada estação.</p>
+  <div class="mods">
+    <div class="mod"><span class="mod-tag">Completo</span><span class="mod-km">8 km</span><span class="mod-txt">1 km de corrida antes de cada estação</span></div>
+    <div class="mod"><span class="mod-tag alt">Reduzido</span><span class="mod-km">4 km</span><span class="mod-txt">500 m de corrida antes de cada estação</span></div>
+  </div>
+  <ol class="stations">
+    <li><b>SkiErg</b><span>1.000 m</span></li>
+    <li><b>Sled Push</b><span>50 m</span></li>
+    <li><b>Sled Pull</b><span>50 m</span></li>
+    <li><b>Burpee Broad Jump</b><span>80 m</span></li>
+    <li><b>Remo</b><span>1.000 m</span></li>
+    <li><b>Farmers Carry</b><span>200 m</span></li>
+    <li><b>Sandbag Lunges</b><span>100 m</span></li>
+    <li><b>Wall Balls</b><span>100 rep.</span></li>
+  </ol>
+</section>
+
+<h2 class="sec" id="inscricao">Horários de largada</h2>
+
+
+  <div class="count" id="count"><span class="dot" aria-hidden="true"></span><span>Carregando horários…</span></div>
+
+  <div class="grid" id="grid" aria-label="Horários de largada"></div>
+
+  <div class="legend" aria-hidden="true">
+    <span><i class="sw"></i>Livre</span>
+    <span><i class="sw s"></i>Escolhido</span>
+    <span><i class="sw t"></i>Ocupado</span>
+  </div>
+
+  <div class="backdrop" id="backdrop" hidden></div>
+  <form class="form" id="form" hidden role="dialog" aria-modal="true" aria-labelledby="form-title">
+    <div class="form-head">
+      <h2 id="form-title">Largada 06:00</h2>
+      <button type="button" class="x" id="close" aria-label="Fechar e trocar horário">×</button>
+    </div>
+    <p class="sub">Escolha a modalidade e coloque só o primeiro nome de cada atleta.</p>
+    <fieldset class="modpick">
+      <legend>Modalidade</legend>
+      <label class="opt"><input type="radio" name="mod" value="Completo" checked><span><b>Completo</b> 8 km</span></label>
+      <label class="opt"><input type="radio" name="mod" value="Reduzido"><span><b>Reduzido</b> 4 km</span></label>
+    </fieldset>
+    <div class="fields">
+      <label for="n1">Atleta 1<input id="n1" name="n1" autocomplete="given-name" maxlength="20" required></label>
+      <label for="n2">Atleta 2<input id="n2" name="n2" autocomplete="off" maxlength="20" required></label>
+    </div>
+    <button class="btn" id="go" type="submit">Confirmar inscrição</button>
+    <p class="msg" id="msg" role="status"></p>
+    <button type="button" class="swap" id="swap">Trocar horário</button>
+  </form>
+
+  <div class="backdrop" id="soon-bg" hidden></div>
+  <div class="form soon" id="soon" hidden role="dialog" aria-modal="true" aria-labelledby="soon-title">
+    <div class="form-head">
+      <h2 id="soon-title">Inscrições em breve</h2>
+      <button type="button" class="x" id="soon-x" aria-label="Fechar">×</button>
+    </div>
+    <p class="sub">As inscrições do Simulado HYROX ainda não foram abertas. Assim que a data for confirmada, você poderá escolher o horário da sua dupla aqui.</p>
+    <button type="button" class="swap" id="soon-ok">Voltar aos horários</button>
+  </div>
+
+  <div class="done" id="done" hidden>
+    <h2>Dupla inscrita!</h2>
+    <p id="done-names"></p>
+    <p class="big" id="done-time"></p>
+    <p>Chegue 15 minutos antes da sua largada.</p>
+    <a class="btn ghost" id="done-wa" target="_blank" rel="noopener">Avisar o box no WhatsApp</a>
+  </div>
+
+  <p class="note">Jacob Performance · R. Dom Barbosa, Jardim Ipiranga, Aparecida de Goiânia</p>
+</div>
+
+<script>
+/* Cole aqui o endereço do Apps Script quando a planilha estiver pronta. Vazio = modo de teste. */
+var API_URL = '';
+/* false = inscrições em breve (horários à mostra, sem inscrição). Troque para true quando abrir. */
+var OPEN = false;
+if (!OPEN) document.addEventListener('DOMContentLoaded', function(){ var l = document.querySelector('.legend'); if (l) l.hidden = true; });
+(function(){ var l = document.querySelector('.legend'); if (l && !OPEN) l.hidden = true; })();
+var WA = '5562992125217';
+
+var START = 6 * 60, END = 9 * 60 + 20, STEP = 10;
+var SLOTS = [];
+for (var m = START; m <= END; m += STEP) SLOTS.push(pad(Math.floor(m / 60)) + ':' + pad(m % 60));
+function pad(n){ return (n < 10 ? '0' : '') + n; }
+
+var taken = {}, selected = null;
+var grid = document.getElementById('grid'), form = document.getElementById('form');
+
+/* ---------- dados ---------- */
+var DEMO_KEY = 'jp-hyrox-demo';
+function demoLoad(){
+  var base = { '06:10': 'Ana e Bruno', '06:40': 'Lucas e Rafa', '07:20': 'Bia e Carol', '08:00': 'Kennedy e Jacob' };
+  try { var s = JSON.parse(localStorage.getItem(DEMO_KEY) || '{}'); for (var k in s) base[k] = s[k]; } catch(e) {}
+  return base;
+}
+function demoSave(t, names){
+  try { var s = JSON.parse(localStorage.getItem(DEMO_KEY) || '{}'); s[t] = names; localStorage.setItem(DEMO_KEY, JSON.stringify(s)); } catch(e) {}
+}
+function load(){
+  if (!OPEN) return Promise.resolve({});
+  if (!API_URL) return Promise.resolve(demoLoad());
+  return fetch(API_URL + '?t=' + Date.now()).then(function(r){ return r.json(); }).then(function(d){ return d.taken || {}; });
+}
+function save(t, n1, n2, mod){
+  if (!API_URL) {
+    return new Promise(function(res){ setTimeout(function(){
+      var cur = demoLoad();
+      if (cur[t]) return res({ ok: false, reason: 'taken', taken: cur });
+      demoSave(t, n1 + ' e ' + n2); res({ ok: true, taken: demoLoad() });
+    }, 500); });
+  }
+  return fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify({ slot: t, n1: n1, n2: n2, mod: mod }) }).then(function(r){ return r.json(); });
+}
+
+/* ---------- tela ---------- */
+function render(){
+  grid.innerHTML = '';
+  var byHour = {};
+  SLOTS.forEach(function(t){ var h = t.slice(0, 2); (byHour[h] = byHour[h] || []).push(t); });
+  Object.keys(byHour).forEach(function(h){
+    var lab = document.createElement('p'); lab.className = 'hour'; lab.textContent = (+h) + 'h da manhã'; grid.appendChild(lab);
+    var row = document.createElement('div'); row.className = 'row';
+    byHour[h].forEach(function(t){
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'slot'; b.innerHTML = '<span class="slot-t">' + t + '</span>';
+      if (taken[t]) {
+        b.classList.add('taken'); b.disabled = true; b.innerHTML += '<span class="slot-tag">Ocupado</span>';
+        b.setAttribute('aria-label', 'Largada ' + t + ', ocupada' + (taken[t] === true ? '' : ' por ' + taken[t]));
+        b.title = 'Ocupado';
+      } else {
+        b.setAttribute('aria-label', 'Largada ' + t + ', livre');
+        if (t === selected) b.classList.add('sel');
+        b.addEventListener('click', function(){ if (OPEN) pick(t); else showSoon(); });
+      }
+      row.appendChild(b);
+    });
+    grid.appendChild(row);
+  });
+  var free = SLOTS.filter(function(t){ return !taken[t]; }).length;
+  if (!OPEN) { document.getElementById('count').innerHTML = '<span class="dot soon-dot" aria-hidden="true"></span><span><b>Inscrições em breve</b></span>'; return; }
+  document.getElementById('count').innerHTML = '<span class="dot" aria-hidden="true"></span><span>' +
+    (free ? '<b>' + free + '</b> de ' + SLOTS.length + ' horários disponíveis' : 'Todos os horários foram preenchidos') + '</span>';
+}
+function pick(t){
+  selected = t; render();
+  openSheet(); document.getElementById('done').hidden = true;
+  document.getElementById('form-title').textContent = 'Largada ' + t;
+  document.getElementById('msg').textContent = ''; document.getElementById('msg').className = 'msg';
+  document.getElementById('n1').focus({ preventScroll: true });
+}
+function firstName(v){ return (v || '').trim().split(/\s+/)[0].replace(/[<>]/g, '').slice(0, 20); }
+
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  var n1 = firstName(document.getElementById('n1').value), n2 = firstName(document.getElementById('n2').value);
+  var mod = (form.querySelector('input[name=mod]:checked') || {}).value || 'Completo';
+  var msg = document.getElementById('msg'), go = document.getElementById('go');
+  if (!selected) return;
+  if (!n1 || !n2) { msg.className = 'msg err'; msg.textContent = 'Preencha o primeiro nome dos dois atletas.'; return; }
+  go.disabled = true; go.textContent = 'Reservando…'; msg.textContent = '';
+  var t = selected;
+  save(t, n1, n2, mod).then(function(r){
+    if (r.taken) taken = r.taken;
+    if (!r.ok) {
+      selected = null; render(); closeSheet();
+      var c = document.getElementById('count'); c.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      alertBox('O horário ' + t + ' acabou de ser preenchido por outra dupla. Escolha outro horário livre.');
+      return;
+    }
+    taken[t] = n1 + ' e ' + n2; selected = null; render();
+    closeSheet(); form.reset();
+    var d = document.getElementById('done'); d.hidden = false;
+    document.getElementById('done-names').textContent = n1 + ' e ' + n2 + ' · ' + mod + ' (' + (mod === 'Reduzido' ? '4 km' : '8 km') + ') · largada às';
+    document.getElementById('done-time').textContent = t;
+    document.getElementById('done-wa').href = 'https://wa.me/' + WA + '?text=' +
+      encodeURIComponent('Inscrição Simulado HYROX: dupla ' + n1 + ' e ' + n2 + ', modalidade ' + mod + ', largada às ' + t + '.');
+    d.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }).catch(function(){
+    msg.className = 'msg err'; msg.textContent = 'Não foi possível enviar agora. Confira sua internet e tente de novo.';
+  }).then(function(){ go.disabled = false; go.textContent = 'Confirmar inscrição'; });
+});
+function alertBox(text){
+  var c = document.getElementById('count');
+  var p = document.createElement('p'); p.className = 'msg err'; p.style.textAlign = 'center'; p.textContent = text;
+  c.parentNode.insertBefore(p, c.nextSibling); setTimeout(function(){ p.remove(); }, 7000);
+}
+
+function openSheet(){ form.hidden = false; document.getElementById('backdrop').hidden = false; document.body.classList.add('lock'); }
+function closeSheet(){ form.hidden = true; document.getElementById('backdrop').hidden = true; document.body.classList.remove('lock'); }
+function cancelPick(){ closeSheet(); selected = null; render(); }
+document.getElementById('close').addEventListener('click', cancelPick);
+document.getElementById('swap').addEventListener('click', cancelPick);
+document.getElementById('backdrop').addEventListener('click', cancelPick);
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !form.hidden) cancelPick(); });
+
+function showSoon(){ document.getElementById('soon').hidden = false; document.getElementById('soon-bg').hidden = false; document.body.classList.add('lock'); document.getElementById('soon-x').focus(); }
+function hideSoon(){ document.getElementById('soon').hidden = true; document.getElementById('soon-bg').hidden = true; document.body.classList.remove('lock'); }
+['soon-x','soon-ok','soon-bg'].forEach(function(id){ document.getElementById(id).addEventListener('click', hideSoon); });
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !document.getElementById('soon').hidden) hideSoon(); });
+
+function refresh(){ return load().then(function(d){ taken = d; if (selected && taken[selected]) { selected = null; closeSheet(); } render(); }); }
+refresh().catch(function(){ document.getElementById('count').innerHTML = '<span>Não foi possível carregar os horários. Atualize a página.</span>'; });
+setInterval(function(){ if (form.hidden) refresh().catch(function(){}); }, 30000);
+</script>
+</body>
+</html>
