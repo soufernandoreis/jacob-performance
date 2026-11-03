@@ -120,6 +120,53 @@
   .slot.taken .slot-t{text-decoration:line-through;text-decoration-thickness:2px;font-size:18px}
   .slot-tag{font-family:var(--body);font-weight:600;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#FF8A80}
   .sw.t{background:rgba(229,36,33,.16) !important;border-color:rgba(229,36,33,.85) !important}
+  .price{position:relative;max-width:420px;margin:16px auto 0;padding:14px 16px;border-radius:14px;background:var(--card);border:1px solid var(--line);text-align:center}
+  .price-main{margin:0;display:flex;align-items:baseline;justify-content:center;gap:8px;flex-wrap:wrap}
+  .price-lbl{font-size:15px;color:var(--muted)}
+  .price-v{font-family:var(--display);font-weight:900;font-size:34px;line-height:1}
+  .price-unit{font-size:15px;color:var(--muted)}
+  .price-note{margin:8px 0 0;display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;line-height:1.4;color:#D6D6D6;text-wrap:balance}
+  .price-ok{flex:0 0 20px;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(31,168,85,.25);color:var(--green-hi);font-size:12px;font-weight:700}
+  .price-note{margin:12px 0 0 !important;padding:10px 12px;border-radius:10px;background:rgba(31,168,85,.18);border:1px solid rgba(52,209,122,.6);color:#FFFFFF !important;font-size:15px !important;text-align:left}
+  .price-note b{color:var(--green-hi);font-weight:700}
+  .price-ok{background:var(--green) !important;color:#FFFFFF !important}
+  /* blocos por modalidade e vagas por horário */
+  .grid{gap:10px !important}
+  .blk-head{display:flex;align-items:center;flex-wrap:wrap;gap:8px 10px;margin:18px 0 2px;padding:10px 12px;border-radius:12px;background:var(--card);border-left:4px solid var(--red)}
+  .blk-head:first-child{margin-top:0}
+  .blk-head.b-half{border-left-color:var(--orange)}
+  .blk-tag{padding:3px 10px;border-radius:999px;background:var(--red);font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+  .b-half .blk-tag{background:var(--orange)}
+  .blk-km{font-family:var(--display);font-weight:900;font-size:24px;line-height:1}
+  .blk-when{margin-left:auto;font-size:14px;color:var(--muted)}
+  .slot{min-height:58px !important;font-size:21px !important;gap:2px}
+  .slot-v{font-family:var(--body);font-weight:600;font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--green-hi)}
+  .slot-v.last{color:#F5B13A}
+  .slot.sel .slot-v{color:#FFFFFF}
+  .mod-when{margin-top:6px;padding:4px 8px;border-radius:8px;background:rgba(255,255,255,.06);font-size:13px;font-weight:600;color:#FFFFFF}
+  #form-sub b{color:#FFFFFF}
+  @media (min-width: 760px){
+    .wrap{max-width:760px}
+    .row{grid-template-columns:repeat(4,minmax(0,1fr)) !important}
+    .stations{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+  [hidden]{display:none !important}
+  .price-who2{position:relative;margin:4px 0 0;font-size:13px;color:var(--muted)}
+  .alunos{grid-template-columns:1fr !important;gap:8px !important}
+  .alunos .opt{justify-content:flex-start;padding:11px 14px;font-size:15px}
+  .pay-in{margin:4px 0 0;padding:12px;border-radius:10px;background:rgba(243,106,31,.12);border:1px solid rgba(243,106,31,.55);display:flex;flex-direction:column;gap:10px}
+  .pay-line{margin:0;font-size:15px;line-height:1.4}
+  .pay-line b{color:#FFB37A}
+  .fields + .pay-in{margin-top:12px}
+  .pay{margin:16px 0 4px;padding:16px;border-radius:14px;background:#000;border:1.5px solid rgba(243,106,31,.7);text-align:center}
+  .pay p{margin:0}
+  .pay-t{font-family:var(--display);font-weight:800;font-size:16px;letter-spacing:.08em;text-transform:uppercase;color:#FFB37A}
+  .pay-v{font-family:var(--display);font-weight:900;font-size:40px;line-height:1.05}
+  .pay-k{margin-top:8px !important;font-size:13px;color:var(--muted)}
+  .pay-key{font-family:var(--display);font-weight:800;font-size:28px;letter-spacing:.02em;user-select:all;-webkit-user-select:all}
+  .pay-note{margin-top:10px !important;font-size:14px;line-height:1.45;color:#D6D6D6}
+  .btn.copy{min-height:48px;margin-top:10px;font-size:18px;background:var(--orange);box-shadow:0 8px 22px rgba(243,106,31,.3)}
+  #done-tip{margin-top:12px}
 </style>
 </head>
 <body>
@@ -134,9 +181,13 @@
     <p class="eyebrow">Evento do box</p>
     <h1>Simulado<br>HYROX</h1>
     <div class="meta">
-      <span class="pill">Data a confirmar</span>
+      <span class="pill">15 de novembro</span>
       <span class="pill">Duplas</span>
-      <span class="pill free">Gratuito</span>
+      </div>
+    <div class="price" aria-label="Valor da inscrição">
+      <p class="price-main"><span class="price-lbl">Inscrição</span><span class="price-v">R$ 30</span><span class="price-unit">por dupla</span></p>
+      <p class="price-who2">Vale para duplas com pelo menos um atleta de outro box.</p>
+      <p class="price-note"><span class="price-ok" aria-hidden="true">✓</span><span><b>Alunos da Jacob Performance:</b> inscrição inclusa no plano</span></p>
     </div>
   </header>
 
@@ -144,8 +195,8 @@
   <h2 id="como" class="sec">Como funciona</h2>
   <p class="lead">Corrida intercalada com 8 estações. A dupla corre junta e divide o trabalho de cada estação.</p>
   <div class="mods">
-    <div class="mod"><span class="mod-tag">Completo</span><span class="mod-km">8 km</span><span class="mod-txt">1 km de corrida antes de cada estação</span></div>
-    <div class="mod"><span class="mod-tag alt">Reduzido</span><span class="mod-km">4 km</span><span class="mod-txt">500 m de corrida antes de cada estação</span></div>
+    <div class="mod"><span class="mod-tag">Completo</span><span class="mod-km">8 km</span><span class="mod-txt">1 km de corrida antes de cada estação</span><span class="mod-when">Largadas 06:00 às 07:10</span></div>
+    <div class="mod"><span class="mod-tag alt">Reduzido</span><span class="mod-km">4 km</span><span class="mod-txt">500 m de corrida antes de cada estação</span><span class="mod-when">Largadas 07:20 às 10:00</span></div>
   </div>
   <ol class="stations">
     <li><b>SkiErg</b><span>1.000 m</span></li>
@@ -161,7 +212,6 @@
 
 <h2 class="sec" id="inscricao">Horários de largada</h2>
 
-
   <div class="count" id="count"><span class="dot" aria-hidden="true"></span><span>Carregando horários…</span></div>
 
   <div class="grid" id="grid" aria-label="Horários de largada"></div>
@@ -169,7 +219,7 @@
   <div class="legend" aria-hidden="true">
     <span><i class="sw"></i>Livre</span>
     <span><i class="sw s"></i>Escolhido</span>
-    <span><i class="sw t"></i>Ocupado</span>
+    <span><i class="sw t"></i>Lotado</span>
   </div>
 
   <div class="backdrop" id="backdrop" hidden></div>
@@ -178,15 +228,20 @@
       <h2 id="form-title">Largada 06:00</h2>
       <button type="button" class="x" id="close" aria-label="Fechar e trocar horário">×</button>
     </div>
-    <p class="sub">Escolha a modalidade e coloque só o primeiro nome de cada atleta.</p>
-    <fieldset class="modpick">
-      <legend>Modalidade</legend>
-      <label class="opt"><input type="radio" name="mod" value="Completo" checked><span><b>Completo</b> 8 km</span></label>
-      <label class="opt"><input type="radio" name="mod" value="Reduzido"><span><b>Reduzido</b> 4 km</span></label>
+    <p class="sub" id="form-sub">Coloque só o primeiro nome de cada atleta.</p>
+    <fieldset class="modpick alunos">
+      <legend>Vocês treinam na Jacob Performance?</legend>
+      <label class="opt"><input type="radio" name="alunos" value="dois" checked><span>Sim, os dois</span></label>
+      <label class="opt"><input type="radio" name="alunos" value="um"><span>Só um de nós</span></label>
+      <label class="opt"><input type="radio" name="alunos" value="nenhum"><span>Nenhum de nós</span></label>
     </fieldset>
     <div class="fields">
       <label for="n1">Atleta 1<input id="n1" name="n1" autocomplete="given-name" maxlength="20" required></label>
       <label for="n2">Atleta 2<input id="n2" name="n2" autocomplete="off" maxlength="20" required></label>
+    </div>
+    <div class="pay-in" id="pay-in" hidden>
+      <p class="pay-line">Inscrição da dupla: <b>R$ 30</b>, pago por Pix depois de confirmar.</p>
+      <label for="zap">WhatsApp para contato<input id="zap" name="zap" type="tel" inputmode="tel" autocomplete="tel" placeholder="(62) 90000-0000" maxlength="16"></label>
     </div>
     <button class="btn" id="go" type="submit">Confirmar inscrição</button>
     <p class="msg" id="msg" role="status"></p>
@@ -199,7 +254,7 @@
       <h2 id="soon-title">Inscrições em breve</h2>
       <button type="button" class="x" id="soon-x" aria-label="Fechar">×</button>
     </div>
-    <p class="sub">As inscrições do Simulado HYROX ainda não foram abertas. Assim que a data for confirmada, você poderá escolher o horário da sua dupla aqui.</p>
+    <p class="sub">As inscrições do Simulado HYROX ainda não foram abertas. Em breve você poderá escolher o horário da sua dupla aqui.</p>
     <button type="button" class="swap" id="soon-ok">Voltar aos horários</button>
   </div>
 
@@ -207,7 +262,15 @@
     <h2>Dupla inscrita!</h2>
     <p id="done-names"></p>
     <p class="big" id="done-time"></p>
-    <p>Chegue 15 minutos antes da sua largada.</p>
+    <div class="pay" id="pay" hidden>
+      <p class="pay-t">Falta o pagamento</p>
+      <p class="pay-v">R$ 30</p>
+      <p class="pay-k">Chave Pix (celular)</p>
+      <p class="pay-key" id="pay-key">(62) 99212-4125</p>
+      <button type="button" class="btn copy" id="copy">Copiar chave Pix</button>
+      <p class="pay-note">Envie o comprovante pelo WhatsApp em até 24h para garantir a vaga. Sem o pagamento nesse prazo, o horário é liberado.</p>
+    </div>
+    <p id="done-tip">Chegue 15 minutos antes da sua largada.</p>
     <a class="btn ghost" id="done-wa" target="_blank" rel="noopener">Avisar o box no WhatsApp</a>
   </div>
 
@@ -216,64 +279,73 @@
 
 <script>
 /* Cole aqui o endereço do Apps Script quando a planilha estiver pronta. Vazio = modo de teste. */
-var API_URL = '';
+var API_URL = 'https://script.google.com/macros/s/AKfycbw1ZxOx2iGXuXEhIrGjAzxz3gItZiFiFBAaxgHgYRKQlPRxAASBMyvGPVzYu-lH2Wtt/exec';
 /* false = inscrições em breve (horários à mostra, sem inscrição). Troque para true quando abrir. */
 var OPEN = false;
 if (!OPEN) document.addEventListener('DOMContentLoaded', function(){ var l = document.querySelector('.legend'); if (l) l.hidden = true; });
 (function(){ var l = document.querySelector('.legend'); if (l && !OPEN) l.hidden = true; })();
 var WA = '5562992125217';
 
-var START = 6 * 60, END = 9 * 60 + 20, STEP = 10;
-var SLOTS = [];
-for (var m = START; m <= END; m += STEP) SLOTS.push(pad(Math.floor(m / 60)) + ':' + pad(m % 60));
+var CAP = 4; /* duplas por horário */
+var BLOCKS = [
+  { mod: 'Completo', km: '8 km', from: 6 * 60, to: 7 * 60 + 10, cls: 'b-full' },
+  { mod: 'Reduzido', km: '4 km', from: 7 * 60 + 20, to: 10 * 60, cls: 'b-half' }
+];
+var STEP = 10, SLOTS = [], MOD = {};
 function pad(n){ return (n < 10 ? '0' : '') + n; }
+BLOCKS.forEach(function(bk){ bk.slots = []; for (var m = bk.from; m <= bk.to; m += STEP) { var t = pad(Math.floor(m / 60)) + ':' + pad(m % 60); bk.slots.push(t); SLOTS.push(t); MOD[t] = bk; } });
+var TOTAL = SLOTS.length * CAP;
 
-var taken = {}, selected = null;
+var regs = {}, selected = null; /* regs: { '06:00': ['Ana e Bia', ...] } */
 var grid = document.getElementById('grid'), form = document.getElementById('form');
+function used(t){ var v = regs[t]; return typeof v === 'number' ? v : (v || []).length; }
 
 /* ---------- dados ---------- */
-var DEMO_KEY = 'jp-hyrox-demo';
+var DEMO_KEY = 'jp-hyrox-demo2';
 function demoLoad(){
-  var base = { '06:10': 'Ana e Bruno', '06:40': 'Lucas e Rafa', '07:20': 'Bia e Carol', '08:00': 'Kennedy e Jacob' };
-  try { var s = JSON.parse(localStorage.getItem(DEMO_KEY) || '{}'); for (var k in s) base[k] = s[k]; } catch(e) {}
+  var base = { '06:00': ['Ana e Bruno', 'Lucas e Rafa', 'Bia e Carol', 'Kennedy e Jacob'], '06:10': ['Joana e Paulo', 'Rita e Leo', 'Davi e Caio'], '06:30': ['Marta e Edu'], '07:30': ['Gabi e Nina', 'Tom e Igor'] };
+  try { var s = JSON.parse(localStorage.getItem(DEMO_KEY) || '{}'); for (var k in s) base[k] = (base[k] || []).concat(s[k]); } catch(e) {}
   return base;
 }
 function demoSave(t, names){
-  try { var s = JSON.parse(localStorage.getItem(DEMO_KEY) || '{}'); s[t] = names; localStorage.setItem(DEMO_KEY, JSON.stringify(s)); } catch(e) {}
+  try { var s = JSON.parse(localStorage.getItem(DEMO_KEY) || '{}'); (s[t] = s[t] || []).push(names); localStorage.setItem(DEMO_KEY, JSON.stringify(s)); } catch(e) {}
 }
 function load(){
   if (!OPEN) return Promise.resolve({});
   if (!API_URL) return Promise.resolve(demoLoad());
-  return fetch(API_URL + '?t=' + Date.now()).then(function(r){ return r.json(); }).then(function(d){ return d.taken || {}; });
+  return fetch(API_URL + '?t=' + Date.now()).then(function(r){ return r.json(); }).then(function(d){ return d.regs || {}; });
 }
-function save(t, n1, n2, mod){
+function save(t, n1, n2, alunos, zap){
   if (!API_URL) {
     return new Promise(function(res){ setTimeout(function(){
       var cur = demoLoad();
-      if (cur[t]) return res({ ok: false, reason: 'taken', taken: cur });
-      demoSave(t, n1 + ' e ' + n2); res({ ok: true, taken: demoLoad() });
+      if ((cur[t] || []).length >= CAP) return res({ ok: false, reason: 'full', regs: cur });
+      demoSave(t, n1 + ' e ' + n2); res({ ok: true, regs: demoLoad() });
     }, 500); });
   }
   return fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-    body: JSON.stringify({ slot: t, n1: n1, n2: n2, mod: mod }) }).then(function(r){ return r.json(); });
+    body: JSON.stringify({ slot: t, n1: n1, n2: n2, alunos: alunos, whatsapp: zap }) }).then(function(r){ return r.json(); });
 }
 
 /* ---------- tela ---------- */
 function render(){
   grid.innerHTML = '';
-  var byHour = {};
-  SLOTS.forEach(function(t){ var h = t.slice(0, 2); (byHour[h] = byHour[h] || []).push(t); });
-  Object.keys(byHour).forEach(function(h){
-    var lab = document.createElement('p'); lab.className = 'hour'; lab.textContent = (+h) + 'h da manhã'; grid.appendChild(lab);
+  BLOCKS.forEach(function(bk){
+    var head = document.createElement('div'); head.className = 'blk-head ' + bk.cls;
+    head.innerHTML = '<span class="blk-tag">' + bk.mod + '</span><span class="blk-km">' + bk.km + '</span><span class="blk-when">' + bk.slots[0] + ' às ' + bk.slots[bk.slots.length - 1] + '</span>';
+    grid.appendChild(head);
     var row = document.createElement('div'); row.className = 'row';
-    byHour[h].forEach(function(t){
-      var b = document.createElement('button'); b.type = 'button'; b.className = 'slot'; b.innerHTML = '<span class="slot-t">' + t + '</span>';
-      if (taken[t]) {
-        b.classList.add('taken'); b.disabled = true; b.innerHTML += '<span class="slot-tag">Ocupado</span>';
-        b.setAttribute('aria-label', 'Largada ' + t + ', ocupada' + (taken[t] === true ? '' : ' por ' + taken[t]));
-        b.title = 'Ocupado';
+    bk.slots.forEach(function(t){
+      var n = used(t), left = CAP - n;
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'slot';
+      b.innerHTML = '<span class="slot-t">' + t + '</span>';
+      if (left <= 0) {
+        b.classList.add('taken'); b.disabled = true; b.innerHTML += '<span class="slot-tag">Lotado</span>';
+        b.setAttribute('aria-label', 'Largada ' + t + ', lotada');
       } else {
-        b.setAttribute('aria-label', 'Largada ' + t + ', livre');
+        var lbl = left === 1 ? 'Última vaga' : left + ' vagas';
+        b.innerHTML += '<span class="slot-v' + (left === 1 ? ' last' : '') + '">' + lbl + '</span>';
+        b.setAttribute('aria-label', 'Largada ' + t + ', ' + bk.mod + ', ' + lbl);
         if (t === selected) b.classList.add('sel');
         b.addEventListener('click', function(){ if (OPEN) pick(t); else showSoon(); });
       }
@@ -281,15 +353,17 @@ function render(){
     });
     grid.appendChild(row);
   });
-  var free = SLOTS.filter(function(t){ return !taken[t]; }).length;
   if (!OPEN) { document.getElementById('count').innerHTML = '<span class="dot soon-dot" aria-hidden="true"></span><span><b>Inscrições em breve</b></span>'; return; }
+  var free = SLOTS.reduce(function(a, t){ return a + Math.max(0, CAP - used(t)); }, 0);
   document.getElementById('count').innerHTML = '<span class="dot" aria-hidden="true"></span><span>' +
-    (free ? '<b>' + free + '</b> de ' + SLOTS.length + ' horários disponíveis' : 'Todos os horários foram preenchidos') + '</span>';
+    (free ? '<b>' + free + '</b> de ' + TOTAL + ' vagas disponíveis' : 'Todas as vagas foram preenchidas') + '</span>';
 }
 function pick(t){
   selected = t; render();
   openSheet(); document.getElementById('done').hidden = true;
+  var bk = MOD[t], left = CAP - used(t);
   document.getElementById('form-title').textContent = 'Largada ' + t;
+  document.getElementById('form-sub').innerHTML = '<b>' + bk.mod + ' · ' + bk.km + '</b> · ' + (left === 1 ? 'última vaga' : left + ' vagas') + ' neste horário.<br>Coloque só o primeiro nome de cada atleta.';
   document.getElementById('msg').textContent = ''; document.getElementById('msg').className = 'msg';
   document.getElementById('n1').focus({ preventScroll: true });
 }
@@ -298,27 +372,33 @@ function firstName(v){ return (v || '').trim().split(/\s+/)[0].replace(/[<>]/g, 
 form.addEventListener('submit', function(e){
   e.preventDefault();
   var n1 = firstName(document.getElementById('n1').value), n2 = firstName(document.getElementById('n2').value);
-  var mod = (form.querySelector('input[name=mod]:checked') || {}).value || 'Completo';
   var msg = document.getElementById('msg'), go = document.getElementById('go');
   if (!selected) return;
   if (!n1 || !n2) { msg.className = 'msg err'; msg.textContent = 'Preencha o primeiro nome dos dois atletas.'; return; }
+  var alunos = (form.querySelector('input[name=alunos]:checked') || {}).value || 'dois';
+  var pays = alunos !== 'dois', zap = (document.getElementById('zap').value || '').replace(/\D/g, '');
+  if (pays && zap.length < 10) { msg.className = 'msg err'; msg.textContent = 'Coloque um WhatsApp com DDD para combinarmos o pagamento.'; document.getElementById('zap').focus(); return; }
   go.disabled = true; go.textContent = 'Reservando…'; msg.textContent = '';
-  var t = selected;
-  save(t, n1, n2, mod).then(function(r){
-    if (r.taken) taken = r.taken;
+  var t = selected, mod = MOD[t].mod, km = MOD[t].km;
+  save(t, n1, n2, alunos, pays ? zap : '').then(function(r){
+    if (r.regs) regs = r.regs;
+    if (!r.ok && r.reason !== 'full') { msg.className = 'msg err'; msg.textContent = r.reason === 'whatsapp' ? 'Coloque um WhatsApp com DDD para combinarmos o pagamento.' : 'Confira os nomes e tente de novo.'; return; }
     if (!r.ok) {
       selected = null; render(); closeSheet();
       var c = document.getElementById('count'); c.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      alertBox('O horário ' + t + ' acabou de ser preenchido por outra dupla. Escolha outro horário livre.');
+      alertBox('As vagas das ' + t + ' acabaram de ser preenchidas. Escolha outro horário.');
       return;
     }
-    taken[t] = n1 + ' e ' + n2; selected = null; render();
+    selected = null; render();
     closeSheet(); form.reset();
     var d = document.getElementById('done'); d.hidden = false;
-    document.getElementById('done-names').textContent = n1 + ' e ' + n2 + ' · ' + mod + ' (' + (mod === 'Reduzido' ? '4 km' : '8 km') + ') · largada às';
+    document.getElementById('done-names').textContent = n1 + ' e ' + n2 + ' · ' + mod + ' (' + km + ') · largada às';
     document.getElementById('done-time').textContent = t;
-    document.getElementById('done-wa').href = 'https://wa.me/' + WA + '?text=' +
-      encodeURIComponent('Inscrição Simulado HYROX: dupla ' + n1 + ' e ' + n2 + ', modalidade ' + mod + ', largada às ' + t + '.');
+    document.getElementById('pay').hidden = !pays;
+    var wa = document.getElementById('done-wa');
+    wa.textContent = pays ? 'Enviar comprovante no WhatsApp' : 'Avisar o box no WhatsApp';
+    wa.className = pays ? 'btn' : 'btn ghost';
+    wa.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent('Inscrição Simulado HYROX: dupla ' + n1 + ' e ' + n2 + ', modalidade ' + mod + ', largada às ' + t + '.' + (pays ? ' Segue o comprovante do Pix de R$ 30.' : ''));
     d.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }).catch(function(){
     msg.className = 'msg err'; msg.textContent = 'Não foi possível enviar agora. Confira sua internet e tente de novo.';
@@ -343,7 +423,17 @@ function hideSoon(){ document.getElementById('soon').hidden = true; document.get
 ['soon-x','soon-ok','soon-bg'].forEach(function(id){ document.getElementById(id).addEventListener('click', hideSoon); });
 document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !document.getElementById('soon').hidden) hideSoon(); });
 
-function refresh(){ return load().then(function(d){ taken = d; if (selected && taken[selected]) { selected = null; closeSheet(); } render(); }); }
+function syncPay(){ var a = (form.querySelector('input[name=alunos]:checked') || {}).value; document.getElementById('pay-in').hidden = (a === 'dois' || !a); }
+form.querySelectorAll('input[name=alunos]').forEach(function(r){ r.addEventListener('change', syncPay); });
+form.addEventListener('reset', function(){ setTimeout(syncPay, 0); });
+document.getElementById('copy').addEventListener('click', function(){
+  var b = this, key = '62992124125';
+  function ok(){ b.textContent = 'Chave copiada ✓'; setTimeout(function(){ b.textContent = 'Copiar chave Pix'; }, 2500); }
+  function fallback(){ var r = document.createRange(); r.selectNodeContents(document.getElementById('pay-key')); var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r); b.textContent = 'Toque e segure para copiar'; }
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(key).then(ok, fallback); else fallback();
+});
+
+function refresh(){ return load().then(function(d){ regs = d; if (selected && used(selected) >= CAP) { selected = null; closeSheet(); } render(); }); }
 refresh().catch(function(){ document.getElementById('count').innerHTML = '<span>Não foi possível carregar os horários. Atualize a página.</span>'; });
 setInterval(function(){ if (form.hidden) refresh().catch(function(){}); }, 30000);
 </script>

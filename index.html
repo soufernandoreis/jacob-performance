@@ -197,6 +197,18 @@ a{color:#F7B52C}a:hover{color:#FFFFFF}
 @media (prefers-reduced-motion: reduce){.jp-evdot{animation:none}}
 .jp-ev-soon{font-size:26px !important}
 .jp-ev-tag{color:#F5D90A !important}
+
+/* computador: nome no topo, centralizado, e o texto de apoio embaixo */
+@media (min-width: 901px){
+  .jp-hero{min-height:auto !important;flex-direction:column !important;align-items:center !important}
+  .jp-space{display:block !important;height:300px}
+  .jp-hero-copy{max-width:680px !important;margin:0 auto;padding:0 40px 120px !important;align-items:center;text-align:center}
+  .jp-hero-copy .jp-tag{text-wrap:balance}
+  .jp-hero-copy .jp-tag + p{margin-left:auto !important;margin-right:auto !important;text-wrap:balance}
+  .jp-btns{justify-content:center}
+}
+.jp-cta h2 .jp-l{display:block;white-space:nowrap}
+@media (min-width: 901px){ .jp-cta h2{font-size:clamp(56px,6vw,88px) !important} }
 </style>
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -223,7 +235,7 @@ a{color:#F7B52C}a:hover{color:#FFFFFF}
 </nav>
 <a class="jp-head-cta" href="https://wa.me/5562992125217?text=Ol%C3%A1%21%20Vim%20pelo%20site%20%28topo%29%20e%20quero%20agendar%20uma%20aula%20experimental." target="_blank" rel="noopener" style="display: inline-flex; align-items: center; min-height: 46px; padding: 0 22px; border-radius: 6px; background: #E52421; color: #FFFFFF; text-decoration: none; font-family: 'Barlow Condensed', 'Arial Narrow', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: 0.04em; text-transform: uppercase">Agendar aula</a>
 </header>
-<a class="jp-evbar" href="#programacao"><span class="jp-evdot" aria-hidden="true"></span><span><b>Em breve:</b> Simulado HYROX · saiba mais</span><span class="jp-evgo" aria-hidden="true">↓</span></a>
+<a class="jp-evbar" href="#programacao"><span class="jp-evdot" aria-hidden="true"></span><span><b>Simulado HYROX</b> · 15 de novembro · saiba mais</span><span class="jp-evgo" aria-hidden="true">↓</span></a>
 
 <section id="topo" data-jpref="hero" class="jp-hero" style="min-height: 720px; max-width: 1360px; margin: 0 auto; display: flex; align-items: center">
 <div class="jp-space"></div>
@@ -299,9 +311,9 @@ a{color:#F7B52C}a:hover{color:#FFFFFF}
 <h2 id="jp-prog-title">Próximos eventos</h2>
 </div>
 <a class="jp-ev" href="/hyrox/">
-<div class="jp-ev-date"><span class="jp-ev-mon">Em</span><span class="jp-ev-day jp-ev-soon">breve</span></div>
+<div class="jp-ev-date"><span class="jp-ev-day">15</span><span class="jp-ev-mon">nov</span></div>
 <div class="jp-ev-body">
-<span class="jp-ev-tag">Data a confirmar · gratuito</span>
+<span class="jp-ev-tag">Inscrições em breve · inclusa no plano para alunos</span>
 <span class="jp-ev-title">Simulado HYROX</span>
 <span class="jp-ev-txt">Em duplas, com 8 estações. Modalidades de 8 km e 4 km.</span>
 <span class="jp-ev-cta">Ver detalhes →</span>
@@ -773,7 +785,7 @@ class Component extends DCLogic {
     if (!this.pts || !this.w) return;
     const w = this.w, mob = w < 900;
     const hp = this.poses().hero;
-    const W = Math.round(mob ? Math.min(w - 44, 420) : Math.min(hp.s * 2.3, w * 0.46));
+    const W = Math.round(mob ? Math.min(w - 44, 420) : Math.min(620, w * 0.5));
     const fam = '"Barlow Condensed", "Arial Narrow", sans-serif';
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const mctx = document.createElement('canvas').getContext('2d');
@@ -860,7 +872,7 @@ class Component extends DCLogic {
     }
     const s = Math.min(w * 0.28, vh * 0.42, 380);
     return {
-      hero: { cx: w * 0.7, cy: Math.min(96 + 360, vh * 0.55), s: s, a: 1, sp: 0 },
+      hero: { cx: w * 0.5, cy: 186 + (this.word ? this.word.H : Math.min(620, w * 0.5) * 0.34) / 2, s: s, a: 1, sp: 0 },
       about: { cx: w * 0.9, cy: vh * 0.22, s: s * 0.3, a: 0.5, sp: 0.12 },
       band: { cx: w * 0.62, cy: vh * 0.42, s: s * 0.6, a: 1, sp: 0.04 },
       train: { cx: w * 0.1, cy: vh * 0.8, s: s * 0.32, a: 0.45, sp: 0.12 },
