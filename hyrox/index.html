@@ -167,6 +167,10 @@
   .pay-note{margin-top:10px !important;font-size:14px;line-height:1.45;color:#D6D6D6}
   .btn.copy{min-height:48px;margin-top:10px;font-size:18px;background:var(--orange);box-shadow:0 8px 22px rgba(243,106,31,.3)}
   #done-tip{margin-top:12px}
+  .pay-deadline{margin-top:12px !important;padding:10px 12px;border-radius:10px;background:rgba(245,217,10,.14);border:1.5px solid #F5D90A;color:#FFFFFF;font-size:16px;font-weight:600}
+  .pay-deadline b{color:#F5D90A;font-size:20px;font-weight:800}
+  .opt-note{margin:6px 0 0 !important;font-size:13px;color:var(--muted)}
+  .swap.back{margin-top:14px;font-size:16px;color:#FFFFFF}
 </style>
 </head>
 <body>
@@ -267,10 +271,13 @@
       <p class="pay-k">Chave Pix (celular)</p>
       <p class="pay-key" id="pay-key">(62) 99212-4125</p>
       <button type="button" class="btn copy" id="copy">Copiar chave Pix</button>
-      <p class="pay-note">Envie o comprovante pelo WhatsApp em até 24h para garantir a vaga. Sem o pagamento nesse prazo, o horário é liberado.</p>
+      <p class="pay-deadline">Envie o comprovante em até <b>30 minutos</b></p>
+      <p class="pay-note">Sem o comprovante nesse prazo, a vaga é liberada para outra dupla.</p>
     </div>
     <p id="done-tip">Chegue 15 minutos antes da sua largada.</p>
     <a class="btn ghost" id="done-wa" target="_blank" rel="noopener">Avisar o box no WhatsApp</a>
+    <p class="opt-note" id="wa-opt">Opcional: sua inscrição já está confirmada.</p>
+    <button type="button" class="swap back" id="back">← Voltar aos horários</button>
   </div>
 
   <p class="note">Jacob Performance · R. Dom Barbosa, Jardim Ipiranga, Aparecida de Goiânia</p>
@@ -397,7 +404,9 @@ form.addEventListener('submit', function(e){
     var wa = document.getElementById('done-wa');
     wa.textContent = pays ? 'Enviar comprovante no WhatsApp' : 'Avisar o box no WhatsApp';
     wa.className = pays ? 'btn' : 'btn ghost';
+    document.getElementById('wa-opt').hidden = pays;
     wa.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent('Inscrição Simulado HYROX: dupla ' + n1 + ' e ' + n2 + ', modalidade ' + mod + ', largada às ' + t + '.' + (pays ? ' Segue o comprovante do Pix de R$ 30.' : ''));
+    wa.textContent = pays ? 'Enviar comprovante no WhatsApp' : 'Avisar o box no WhatsApp';
     d.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }).catch(function(){
     msg.className = 'msg err'; msg.textContent = 'Não foi possível enviar agora. Confira sua internet e tente de novo.';
@@ -430,6 +439,11 @@ document.getElementById('copy').addEventListener('click', function(){
   function ok(){ b.textContent = 'Chave copiada ✓'; setTimeout(function(){ b.textContent = 'Copiar chave Pix'; }, 2500); }
   function fallback(){ var r = document.createRange(); r.selectNodeContents(document.getElementById('pay-key')); var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r); b.textContent = 'Toque e segure para copiar'; }
   if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(key).then(ok, fallback); else fallback();
+});
+
+document.getElementById('back').addEventListener('click', function(){
+  document.getElementById('done').hidden = true;
+  document.getElementById('inscricao').scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
 
 function refresh(){ return load().then(function(d){ regs = d; if (selected && used(selected) >= CAP) { selected = null; closeSheet(); } render(); }); }
