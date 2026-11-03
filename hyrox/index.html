@@ -130,6 +130,8 @@
   .price-note{margin:12px 0 0 !important;padding:10px 12px;border-radius:10px;background:rgba(31,168,85,.18);border:1px solid rgba(52,209,122,.6);color:#FFFFFF !important;font-size:15px !important;text-align:left}
   .price-note b{color:var(--green-hi);font-weight:700}
   .price-ok{background:var(--green) !important;color:#FFFFFF !important}
+  .price-sub{margin:6px 0 0;font-size:14px;color:var(--muted)}
+  .price-sub b{color:#FFFFFF;font-weight:700}
   /* blocos por modalidade e vagas por horário */
   .grid{gap:10px !important}
   .blk-head{display:flex;align-items:center;flex-wrap:wrap;gap:8px 10px;margin:18px 0 2px;padding:10px 12px;border-radius:12px;background:var(--card);border-left:4px solid var(--red)}
@@ -190,6 +192,7 @@
       </div>
     <div class="price" aria-label="Valor da inscrição">
       <p class="price-main"><span class="price-lbl">Inscrição</span><span class="price-v">R$ 30</span><span class="price-unit">por dupla</span></p>
+      <p class="price-sub">Dupla com um aluno da Jacob/JCB: <b>R$ 15</b></p>
       <p class="price-note"><span class="price-ok" aria-hidden="true">✓</span><span><b>Alunos da Jacob/JCB:</b><br>inscrição inclusa no plano</span></p>
     </div>
   </header>
@@ -243,7 +246,7 @@
       <label for="n2">Atleta 2<input id="n2" name="n2" autocomplete="off" maxlength="20" required></label>
     </div>
     <div class="pay-in" id="pay-in" hidden>
-      <p class="pay-line">Inscrição da dupla: <b>R$ 30</b>, pago por Pix depois de confirmar.</p>
+      <p class="pay-line">Inscrição da dupla: <b id="pay-line-v">R$ 30</b>, pago por Pix depois de confirmar.</p>
       <label for="zap">WhatsApp para contato<input id="zap" name="zap" type="tel" inputmode="tel" autocomplete="tel" placeholder="(62) 90000-0000" maxlength="16"></label>
     </div>
     <button class="btn" id="go" type="submit">Confirmar inscrição</button>
@@ -267,7 +270,7 @@
     <p class="big" id="done-time"></p>
     <div class="pay" id="pay" hidden>
       <p class="pay-t">Falta o pagamento</p>
-      <p class="pay-v">R$ 30</p>
+      <p class="pay-v" id="pay-v">R$ 30</p>
       <p class="pay-k">Chave Pix (celular)</p>
       <p class="pay-key" id="pay-key">(62) 99212-4125</p>
       <button type="button" class="btn copy" id="copy">Copiar chave Pix</button>
@@ -382,12 +385,13 @@ form.addEventListener('submit', function(e){
   if (!selected) return;
   if (!n1 || !n2) { msg.className = 'msg err'; msg.textContent = 'Preencha o primeiro nome dos dois atletas.'; return; }
   var alunos = (form.querySelector('input[name=alunos]:checked') || {}).value || 'dois';
-  var pays = alunos !== 'dois', zap = (document.getElementById('zap').value || '').replace(/\D/g, '');
+  var pays = alunos !== 'dois', preco = price(alunos), zap = (document.getElementById('zap').value || '').replace(/\D/g, '');
   if (pays && zap.length < 10) { msg.className = 'msg err'; msg.textContent = 'Coloque um WhatsApp com DDD para combinarmos o pagamento.'; document.getElementById('zap').focus(); return; }
   go.disabled = true; go.textContent = 'Reservando…'; msg.textContent = '';
   var t = selected, mod = MOD[t].mod, km = MOD[t].km;
   save(t, n1, n2, alunos, pays ? zap : '').then(function(r){
     if (r.regs) regs = r.regs;
+    if (typeof r.valor === 'number' && r.valor > 0) preco = r.valor;
     if (!r.ok && r.reason !== 'full') { msg.className = 'msg err'; msg.textContent = r.reason === 'whatsapp' ? 'Coloque um WhatsApp com DDD para combinarmos o pagamento.' : 'Confira os nomes e tente de novo.'; return; }
     if (!r.ok) {
       selected = null; render(); closeSheet();
@@ -401,11 +405,12 @@ form.addEventListener('submit', function(e){
     document.getElementById('done-names').textContent = n1 + ' e ' + n2 + ' · ' + mod + ' (' + km + ') · largada às';
     document.getElementById('done-time').textContent = t;
     document.getElementById('pay').hidden = !pays;
+    document.getElementById('pay-v').textContent = 'R$ ' + preco;
     var wa = document.getElementById('done-wa');
     wa.textContent = pays ? 'Enviar comprovante no WhatsApp' : 'Avisar o box no WhatsApp';
     wa.className = pays ? 'btn' : 'btn ghost';
     document.getElementById('wa-opt').hidden = pays;
-    wa.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent('Inscrição Simulado HYROX: dupla ' + n1 + ' e ' + n2 + ', modalidade ' + mod + ', largada às ' + t + '.' + (pays ? ' Segue o comprovante do Pix de R$ 30.' : ''));
+    wa.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent('Inscrição Simulado HYROX: dupla ' + n1 + ' e ' + n2 + ', modalidade ' + mod + ', largada às ' + t + '.' + (pays ? ' Segue o comprovante do Pix de R$ ' + preco + '.' : ''));
     wa.textContent = pays ? 'Enviar comprovante no WhatsApp' : 'Avisar o box no WhatsApp';
     d.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }).catch(function(){
@@ -431,7 +436,9 @@ function hideSoon(){ document.getElementById('soon').hidden = true; document.get
 ['soon-x','soon-ok','soon-bg'].forEach(function(id){ document.getElementById(id).addEventListener('click', hideSoon); });
 document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && !document.getElementById('soon').hidden) hideSoon(); });
 
-function syncPay(){ var a = (form.querySelector('input[name=alunos]:checked') || {}).value; document.getElementById('pay-in').hidden = (a === 'dois' || !a); }
+// Os dois alunos: inclusa · só um aluno: R$ 15 · nenhum aluno: R$ 30
+function price(a){ return a === 'um' ? 15 : a === 'nenhum' ? 30 : 0; }
+function syncPay(){ var a = (form.querySelector('input[name=alunos]:checked') || {}).value; document.getElementById('pay-in').hidden = (a === 'dois' || !a); if (price(a)) document.getElementById('pay-line-v').textContent = 'R$ ' + price(a); }
 form.querySelectorAll('input[name=alunos]').forEach(function(r){ r.addEventListener('change', syncPay); });
 form.addEventListener('reset', function(){ setTimeout(syncPay, 0); });
 document.getElementById('copy').addEventListener('click', function(){
