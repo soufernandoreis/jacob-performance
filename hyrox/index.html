@@ -290,7 +290,7 @@
 /* Cole aqui o endereço do Apps Script quando a planilha estiver pronta. Vazio = modo de teste. */
 var API_URL = 'https://script.google.com/macros/s/AKfycbw1ZxOx2iGXuXEhIrGjAzxz3gItZiFiFBAaxgHgYRKQlPRxAASBMyvGPVzYu-lH2Wtt/exec';
 /* false = inscrições em breve (horários à mostra, sem inscrição). Troque para true quando abrir. */
-var OPEN = false;
+var OPEN = true;
 if (!OPEN) document.addEventListener('DOMContentLoaded', function(){ var l = document.querySelector('.legend'); if (l) l.hidden = true; });
 (function(){ var l = document.querySelector('.legend'); if (l && !OPEN) l.hidden = true; })();
 var WA = '5562993909070';            // WhatsApp que recebe as inscrições (aviso dos alunos e comprovante do Pix)
