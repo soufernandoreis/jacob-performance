@@ -293,8 +293,7 @@ var API_URL = 'https://script.google.com/macros/s/AKfycbw1ZxOx2iGXuXEhIrGjAzxz3g
 var OPEN = false;
 if (!OPEN) document.addEventListener('DOMContentLoaded', function(){ var l = document.querySelector('.legend'); if (l) l.hidden = true; });
 (function(){ var l = document.querySelector('.legend'); if (l && !OPEN) l.hidden = true; })();
-var WA = '5562992125217';            // WhatsApp do box: aviso opcional dos alunos
-var WA_PIX = '5562993909070';        // WhatsApp que recebe o comprovante do Pix (atletas de fora)
+var WA = '5562993909070';            // WhatsApp que recebe as inscrições (aviso dos alunos e comprovante do Pix)
 
 var CAP = 4; /* duplas por horário */
 var BLOCKS = [
@@ -411,7 +410,7 @@ form.addEventListener('submit', function(e){
     wa.textContent = pays ? 'Enviar comprovante no WhatsApp' : 'Avisar o box no WhatsApp';
     wa.className = pays ? 'btn' : 'btn ghost';
     document.getElementById('wa-opt').hidden = pays;
-    wa.href = 'https://wa.me/' + (pays ? WA_PIX : WA) + '?text=' + encodeURIComponent('Inscrição Simulado HYROX: dupla ' + n1 + ' e ' + n2 + ', modalidade ' + mod + ', largada às ' + t + '.' + (pays ? ' Segue o comprovante do Pix de R$ ' + preco + '.' : ''));
+    wa.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent('Inscrição Simulado HYROX: dupla ' + n1 + ' e ' + n2 + ', modalidade ' + mod + ', largada às ' + t + '.' + (pays ? ' Segue o comprovante do Pix de R$ ' + preco + '.' : ''));
     wa.textContent = pays ? 'Enviar comprovante no WhatsApp' : 'Avisar o box no WhatsApp';
     d.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }).catch(function(){
