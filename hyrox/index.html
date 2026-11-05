@@ -79,6 +79,11 @@
   .done p{margin:0;font-size:17px;line-height:1.5}
   .done .big{font-family:var(--display);font-weight:900;font-size:48px;line-height:1;margin:10px 0 6px;color:var(--green-hi)}
   .note{margin:28px 0 0;text-align:center;font-size:13px;color:#6F6F6F}
+  .loc{margin:28px 0 0;padding:18px 16px;border-radius:14px;background:var(--card);border:1px solid var(--line);text-align:center}
+  .loc-k{margin:0;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--orange)}
+  .loc-n{margin:6px 0 0;font-family:var(--display);font-weight:900;font-size:28px;line-height:1;text-transform:uppercase}
+  .loc-a{margin:8px 0 0;font-size:15px;line-height:1.45;color:#D6D6D6}
+  .loc-btn{margin-top:14px}
   .demo{margin:0 0 18px;padding:8px 12px;border-radius:8px;background:rgba(245,217,10,.12);border:1px solid rgba(245,217,10,.5);color:#F5D90A;font-size:13px;text-align:center}
   @media (max-width:380px){.row{grid-template-columns:36px repeat(6,minmax(0,1fr));gap:4px}.slot{font-size:16px;min-height:42px}.hour{font-size:19px}}
   @media (prefers-reduced-motion: reduce){*{transition:none!important}}
@@ -177,6 +182,7 @@
   .pay-note{margin-top:10px !important;font-size:14px;line-height:1.45;color:#D6D6D6}
   .btn.copy{min-height:48px;margin-top:10px;font-size:18px;background:var(--orange);box-shadow:0 8px 22px rgba(243,106,31,.3)}
   #done-tip{margin-top:12px}
+  #done-tip a{color:var(--orange);font-weight:600;white-space:nowrap}
   .pay-deadline{margin-top:12px !important;padding:10px 12px;border-radius:10px;background:rgba(245,217,10,.14);border:1.5px solid #F5D90A;color:#FFFFFF;font-size:16px;font-weight:600}
   .pay-deadline b{color:#F5D90A;font-size:20px;font-weight:800}
   .opt-note{margin:6px 0 0 !important;font-size:13px;color:var(--muted)}
@@ -285,13 +291,18 @@
       <p class="pay-deadline">Envie o comprovante em até <b>30 minutos</b></p>
       <p class="pay-note">Sem o comprovante nesse prazo, a vaga é liberada para outra dupla.</p>
     </div>
-    <p id="done-tip">Chegue 15 minutos antes da sua largada.</p>
+    <p id="done-tip">Chegue 15 minutos antes da sua largada na <b>JCB CrossFit</b>, R. Vitória, Qd. 08, Lt. 10. <a href="https://www.google.com/maps/place/JCB+CrossFit/@-16.8252068,-49.2452049,17z/data=!4m6!3m5!1s0x935efde148587c3d:0x36d2b89aec022506!8m2!3d-16.8251763!4d-49.2452807" target="_blank" rel="noopener">Ver no mapa</a></p>
     <a class="btn ghost" id="done-wa" target="_blank" rel="noopener">Avisar o box no WhatsApp</a>
     <p class="opt-note" id="wa-opt">Opcional: sua inscrição já está confirmada.</p>
     <button type="button" class="swap back" id="back">← Voltar aos horários</button>
   </div>
 
-  <p class="note">Jacob Performance · R. Dom Barbosa, Jardim Ipiranga, Aparecida de Goiânia</p>
+  <section class="loc" aria-labelledby="loc-t">
+    <p class="loc-k" id="loc-t">Local do evento</p>
+    <p class="loc-n">JCB CrossFit</p>
+    <p class="loc-a">R. Vitória, Quadra 08, Lote 10<br>Aparecida de Goiânia · GO · 74976-197</p>
+    <a class="btn ghost loc-btn" href="https://www.google.com/maps/place/JCB+CrossFit/@-16.8252068,-49.2452049,17z/data=!4m6!3m5!1s0x935efde148587c3d:0x36d2b89aec022506!8m2!3d-16.8251763!4d-49.2452807" target="_blank" rel="noopener">Abrir no Google Maps</a>
+  </section>
 </div>
 
 <script>
