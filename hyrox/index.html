@@ -143,6 +143,9 @@
   .price-note{margin:12px 0 0 !important;padding:10px 12px;border-radius:10px;background:rgba(31,168,85,.18);border:1px solid rgba(52,209,122,.6);color:#FFFFFF !important;font-size:15px !important;text-align:left}
   .price-note b{color:var(--green-hi);font-weight:700}
   .price-ok{background:var(--green) !important;color:#FFFFFF !important}
+  .price-note.sold{justify-content:center;background:rgba(229,36,33,.2);border-color:rgba(255,70,60,.8);text-align:center}
+  .price-note.sold b{color:#FFFFFF;font-family:var(--display);font-weight:900;font-size:22px;letter-spacing:.08em;text-transform:uppercase}
+  .price-note.sold .price-ok{background:#E52421 !important}
   .price-sub{margin:6px 0 0;font-size:14px;color:var(--muted)}
   .price-sub b{color:#FFFFFF;font-weight:700}
   /* blocos por modalidade e vagas por horário */
@@ -207,7 +210,7 @@
     <div class="price" aria-label="Valor da inscrição">
       <p class="price-main"><span class="price-lbl">Inscrição</span><span class="price-v">R$ 30</span><span class="price-unit">por dupla</span></p>
       <p class="price-sub">Só um atleta de outro box: <b>R$ 15</b></p>
-      <p class="price-note"><span class="price-ok" aria-hidden="true">✓</span><span><b>Inscrição grátis</b> para alunos Jacob/JCB</span></p>
+      <p class="price-note" id="price-note"><span class="price-ok" aria-hidden="true">✓</span><span><b>Inscrição grátis</b> para alunos Jacob/JCB</span></p>
     </div>
   </header>
 
@@ -385,6 +388,7 @@ function render(){
   var free = SLOTS.reduce(function(a, t){ return a + Math.max(0, CAP - used(t)); }, 0);
   document.getElementById('count').innerHTML = '<span class="dot" aria-hidden="true"></span><span>' +
     (free ? '<b>' + free + '</b> de ' + TOTAL + ' vagas disponíveis' : 'Todas as vagas foram preenchidas') + '</span>';
+  soldNote(free === 0);
 }
 function pick(t){
   selected = t; render();
@@ -472,6 +476,13 @@ document.getElementById('back').addEventListener('click', function(){
   document.getElementById('inscricao').scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
 
+/* Quando a última vaga é preenchida, a faixa verde vira uma faixa vermelha "Vagas esgotadas" */
+var noteEl = document.getElementById('price-note'), noteHTML = noteEl.innerHTML;
+function soldNote(on){
+  if (noteEl.classList.contains('sold') === on) return;
+  noteEl.classList.toggle('sold', on);
+  noteEl.innerHTML = on ? '<span class="price-ok" aria-hidden="true">!</span><span><b>Vagas esgotadas</b></span>' : noteHTML;
+}
 function refresh(){ return load().then(function(d){ regs = d; if (selected && used(selected) >= CAP) { selected = null; closeSheet(); } render(); }); }
 refresh().catch(function(){ document.getElementById('count').innerHTML = '<span>Não foi possível carregar os horários. Atualize a página.</span>'; });
 setInterval(function(){ if (form.hidden) refresh().catch(function(){}); }, 30000);
