@@ -190,6 +190,20 @@
   .pay-deadline b{color:#F5D90A;font-size:20px;font-weight:800}
   .opt-note{margin:6px 0 0 !important;font-size:13px;color:var(--muted)}
   .swap.back{margin-top:14px;font-size:16px;color:#FFFFFF}
+  /* ===== Lista de largada ===== */
+  .start{margin:44px 0 0}
+  .start-sub{margin:-4px 0 14px;text-align:center;font-size:15px;color:var(--muted)}
+  .find{display:block;width:100%;margin:0 0 6px;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:#0B0B0B;color:#fff;font:16px var(--body)}
+  .find::placeholder{color:#777}
+  .find-none{margin:14px 0 0;text-align:center;color:var(--muted);font-size:15px}
+  .blk-t{display:flex;align-items:baseline;justify-content:space-between;margin:22px 0 4px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+  .blk-t b{font-family:var(--display);font-weight:900;font-size:24px;text-transform:uppercase}
+  .blk-t span{font-size:13px;color:var(--muted)}
+  .heat{display:grid;grid-template-columns:62px 1fr;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+  .heat-t{font-family:var(--display);font-weight:800;font-size:22px;line-height:1.2;color:var(--orange);font-variant-numeric:tabular-nums}
+  .heat ol{margin:0;padding:0;list-style:none}
+  .heat li{padding:3px 0;font-size:16px;line-height:1.35}
+  .heat li.hit{background:rgba(243,106,31,.2);border-radius:6px;padding:3px 8px;margin:0 -8px;font-weight:700}
 </style>
 </head>
 <body>
@@ -300,6 +314,14 @@
     <button type="button" class="swap back" id="back">← Voltar aos horários</button>
   </div>
 
+  <section class="start" id="start" hidden aria-labelledby="start-t">
+    <h2 class="sec" id="start-t">Lista de largada</h2>
+    <p class="start-sub">Procure seu nome e confira o horário da sua dupla.</p>
+    <input class="find" id="find" type="search" placeholder="Procure seu nome" autocomplete="off" aria-label="Procure seu nome na lista de largada">
+    <div id="heats"></div>
+    <p class="find-none" id="find-none" hidden>Nenhuma dupla encontrada com esse nome.</p>
+  </section>
+
   <section class="loc" aria-labelledby="loc-t">
     <p class="loc-k" id="loc-t">Local do evento</p>
     <p class="loc-n">JCB CrossFit</p>
@@ -327,6 +349,7 @@ function pad(n){ return (n < 10 ? '0' : '') + n; }
 BLOCKS.forEach(function(bk){ bk.slots = []; for (var m = bk.from; m <= bk.to; m += STEP) { var t = pad(Math.floor(m / 60)) + ':' + pad(m % 60); bk.slots.push(t); SLOTS.push(t); MOD[t] = bk; } });
 var TOTAL = SLOTS.length * CAP;
 
+var NOMES = null; /* { '06:00': ['Ana e Bia', ...] } vem da planilha */
 var regs = {}, selected = null; /* regs: { '06:00': ['Ana e Bia', ...] } */
 var grid = document.getElementById('grid'), form = document.getElementById('form');
 function used(t){ var v = regs[t]; return typeof v === 'number' ? v : (v || []).length; }
@@ -344,7 +367,7 @@ function demoSave(t, names){
 function load(){
   if (!OPEN) return Promise.resolve({});
   if (!API_URL) return Promise.resolve(demoLoad());
-  return fetch(API_URL + '?t=' + Date.now()).then(function(r){ return r.json(); }).then(function(d){ return d.regs || {}; });
+  return fetch(API_URL + '?t=' + Date.now()).then(function(r){ return r.json(); }).then(function(d){ NOMES = d.nomes || null; return d.regs || {}; });
 }
 function save(t, n1, n2, alunos, zap){
   if (!API_URL) {
@@ -389,6 +412,7 @@ function render(){
   document.getElementById('count').innerHTML = '<span class="dot" aria-hidden="true"></span><span>' +
     (free ? '<b>' + free + '</b> de ' + TOTAL + ' vagas disponíveis' : 'Todas as vagas foram preenchidas') + '</span>';
   soldNote(free === 0);
+  renderStart();
 }
 function pick(t){
   selected = t; render();
@@ -483,6 +507,35 @@ function soldNote(on){
   noteEl.classList.toggle('sold', on);
   noteEl.innerHTML = on ? '<span class="price-ok" aria-hidden="true">!</span><span><b>Vagas esgotadas</b></span>' : noteHTML;
 }
+/* Lista de largada: duplas por horário, com busca por nome */
+function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function listNames(t){
+  if (NOMES) return NOMES[t] || [];
+  var v = regs[t]; return Array.isArray(v) ? v : [];
+}
+function renderStart(){
+  var sec = document.getElementById('start'), any = SLOTS.some(function(t){ return listNames(t).length; });
+  sec.hidden = !any; if (!any) return;
+  var h = '';
+  BLOCKS.forEach(function(bk){
+    h += '<div class="blk-t"><b>' + bk.mod + ' · ' + bk.km + '</b><span>' + bk.slots[0] + ' às ' + bk.slots[bk.slots.length - 1] + '</span></div>';
+    bk.slots.forEach(function(t){
+      var ns = listNames(t); if (!ns.length) return;
+      h += '<div class="heat"><span class="heat-t">' + t + '</span><ol>' + ns.map(function(n){
+        return '<li data-n="' + esc(String(n).toLowerCase()) + '">' + esc(String(n).replace(' e ', ' & ')) + '</li>';
+      }).join('') + '</ol></div>';
+    });
+  });
+  document.getElementById('heats').innerHTML = h;
+  findName();
+}
+function findName(){
+  var q = document.getElementById('find').value.trim().toLowerCase(), first = null, n = 0;
+  document.querySelectorAll('#heats li').forEach(function(li){ var hit = q.length > 1 && li.dataset.n.indexOf(q) >= 0; li.classList.toggle('hit', hit); if (hit) { n++; if (!first) first = li; } });
+  document.getElementById('find-none').hidden = !(q.length > 1 && !n);
+  return first;
+}
+document.getElementById('find').addEventListener('input', function(){ var f = findName(); if (f) f.scrollIntoView({ behavior: 'smooth', block: 'center' }); });
 function refresh(){ return load().then(function(d){ regs = d; if (selected && used(selected) >= CAP) { selected = null; closeSheet(); } render(); }); }
 refresh().catch(function(){ document.getElementById('count').innerHTML = '<span>Não foi possível carregar os horários. Atualize a página.</span>'; });
 setInterval(function(){ if (form.hidden) refresh().catch(function(){}); }, 30000);
