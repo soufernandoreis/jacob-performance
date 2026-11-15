@@ -349,6 +349,8 @@ function pad(n){ return (n < 10 ? '0' : '') + n; }
 BLOCKS.forEach(function(bk){ bk.slots = []; for (var m = bk.from; m <= bk.to; m += STEP) { var t = pad(Math.floor(m / 60)) + ':' + pad(m % 60); bk.slots.push(t); SLOTS.push(t); MOD[t] = bk; } });
 var TOTAL = SLOTS.length * CAP;
 
+/* Lista oficial de largada (da planilha, 14/11). Se a planilha passar a enviar os nomes, a página usa os de lá. */
+var NOMES_FIXOS = {"06:00": ["Amanda e Suelen", "Valdenubia e Greicy", "Rafaela e Bruna", "Rosária e Lorrayne"], "06:10": ["Erisvania e Camila", "Joceane e Vitória", "Alline e Iracema", "Amanda e Vou"], "06:20": ["Érica e Marcos", "João e Sara", "Fernando e Jânio", "Hungria e Parazinho"], "06:30": ["Eder e João", "Dodo e Wesley", "Daiane e Jenifer", "Fabi e Raires"], "06:40": ["Lucas e Everaldo", "Welder e Olirio", "Jefferson e José", "Maria e Gissely"], "06:50": ["Vinicius e Laryssa", "Murilo e Gustavo", "Vitor e Gustavo", "Isabela e Yara"], "07:00": ["Leonardo e Gabrielly", "Mohamad e Clara", "Cleito e Pollyane", "Wanderson e Bruno"], "07:10": ["Kaua e Lucas", "Rhangel e Emerson", "Augusto e Bárbara", "Juliety e Wenderson"], "07:20": ["Gisela e Weila", "Emanuelly e Evellyn", "Alisson e Livia", "Larissa e Adriene"], "07:30": ["Steffane e Débora", "Karine e Larissa", "Lorrany e Ana", "Núbia e Fatima"], "07:40": ["Kamila e Sara", "Elienai e Adriana", "Juliana e Luciana", "Matheus e Ruth"], "07:50": ["Maria e Ana", "Giovanna e Isadora", "Barbara e Ivone", "Amanda e Michel"], "08:00": ["Angelica e Suzan", "Kevin e Matheus", "Danilo e Klesley", "Pedro e Priscila"], "08:10": ["Gabriel e Renata", "Ana e Leidy", "Lucas e Ellen", "Pamella e Lorena"], "08:20": ["Thaís e Danyllo", "Wevertton e Tatiane", "Luene e Thiago", "Danielly e Thallya"], "08:30": ["Jessica e Fernanda", "Larissa e Thalita", "Larissa e Thais", "Maria e Mariana"], "08:40": ["Deyse e Jaqueline", "Raylma e Amanda", "Gabriel e Igor", "Amanda e Keffem"], "08:50": ["Naty e Emerlinda", "Breno e Larissa", "Raissa e Vanessa", "Bruno e Josiel"], "09:00": ["Rafaela e Tais", "Kamila e Mariana", "Jhonathan e Jefferson", "Bruno e Bruno"], "09:10": ["Wanessa e Joana", "Corbam e Yara", "Elizabete e Querlem", "Matheus e Veronica"], "09:20": ["Daniele e Thais", "Talita e Alessandra", "Rebeca e Manu", "Euler e Rayane"], "09:30": ["Wanessa e Joanna", "Silvia e Fernanda", "Maria e Andréia", "Robertta e Joacir"], "09:40": ["Carol e Thamara", "Daniel e Bruno", "Dhennifer e Wilker", "Kris e Fabiane"], "09:50": ["Guilherme e Wender", "Filipe e Jessica", "Ludmila e Mariana", "Ludmila e Mariana"], "10:00": ["Carol e Kennedy", "Jonatha e Thays", "Matheus e Marcos", "Thallia e Sara"]};
 var NOMES = null; /* { '06:00': ['Ana e Bia', ...] } vem da planilha */
 var regs = {}, selected = null; /* regs: { '06:00': ['Ana e Bia', ...] } */
 var grid = document.getElementById('grid'), form = document.getElementById('form');
@@ -511,6 +513,7 @@ function soldNote(on){
 function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
 function listNames(t){
   if (NOMES) return NOMES[t] || [];
+  if (NOMES_FIXOS) return NOMES_FIXOS[t] || [];
   var v = regs[t]; return Array.isArray(v) ? v : [];
 }
 function renderStart(){
